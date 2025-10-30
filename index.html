@@ -611,7 +611,7 @@
                         <h3 class="font-semibold text-lg text-gray-700 mt-4 mb-3">Product:</h3>
                         <p class="text-sm text-gray-600"><strong>${BOOK_TITLE}</strong></p>
                         <!-- Price updated to use new constant and currency symbol -->
-                        <p class="text-sm text-gray-600">Total Price: ${CURRENCY_SYMBOL}${BOOK_PRICE.toLocaleString()} </p>
+                        <p class="text-sm text-gray-600">Price: ${CURRENCY_SYMBOL}${BOOK_PRICE.toLocaleString()} </p>
                     </div>
 
                     <!-- Number of Copies Selector -->
@@ -648,12 +648,9 @@
             
             // 1. Construct the message content
             const messageTemplate = `
-*NEW BOOK ORDER*
-
- --- PRODUCT DETAIL ---
-*The Awareness Framework*
-No. of Copies: ${copies}
-Total Price: ${CURRENCY_SYMBOL}${(copies * BOOK_PRICE).toLocaleString()}
+* --- NEW ORDER RECEIVED ---*
+*The Awareness Framework:* ${copies} Copies
+*Total Amount:* ${CURRENCY_SYMBOL}${(copies * BOOK_PRICE).toLocaleString()}
 
 --- CUSTOMER DETAIL ---
 Name: ${name}
