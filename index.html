@@ -7,11 +7,10 @@
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
     
-    <!-- Placeholder image URL for the book cover, used below and in Schema -->
-    <!-- Deep Indigo background (#0D1137) with Vibrant Gold text (#FFC107) -->
-    <meta name="book-placeholder-url" content="book.png">
+    <!-- FAVICON: Using the requested relative path. Requires 'favicon.ico' in the root directory. -->
+    <link rel="icon" href="favicon.ico" type="image/x-icon">
     
-    <!-- === Structured Data (JSON-LD) for Search Engine Indexing (ISBN included) === -->
+    <!-- Structured Data (JSON-LD) for Search Engine Indexing (ISBN included) -->
     <script type="application/ld+json">
     {
       "@context": "https://schema.org",
@@ -108,27 +107,24 @@
             z-index: 10; 
         }
         
-        /* *** FIXED STYLING FOR SOCIAL LINKS ***
-        Using explicit CSS properties to ensure the circular shape works correctly
-        in all environments.
-        */
+        /* *** FIXED STYLING FOR SOCIAL LINKS *** */
         .social-link-text {
             display: inline-flex;
             align-items: center;
             justify-content: center;
-            width: 32px; /* Fixed width (Tailwind w-8) */
-            height: 32px; /* Fixed height (Tailwind h-8) */
-            background-color: var(--color-primary); /* Deep Indigo */
+            width: 32px; 
+            height: 32px; 
+            background-color: var(--color-primary); 
             color: white;
             font-weight: bold;
-            border-radius: 9999px; /* GUARANTEED circular shape (Tailwind rounded-full) */
-            font-size: 0.875rem; /* text-sm */
-            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -2px rgba(0, 0, 0, 0.1); /* shadow-md */
+            border-radius: 9999px; 
+            font-size: 0.875rem; 
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -2px rgba(0, 0, 0, 0.1); 
             transition: all 0.3s ease;
         }
 
         .social-link-text:hover {
-            background-color: #4338CA; /* Slightly darker indigo for hover effect */
+            background-color: #4338CA; 
             transform: scale(1.1);
         }
     </style>
@@ -195,15 +191,30 @@
                 We invite you to explore reality through a new lens, where <strong>the observer is</strong> not the by-product of existence but rather the fundamental fabric upon which reality unfolds. We offer this not as a doctrine, but as a new perspective where everything seems connected and self-sustaining.
             </p>
 
-            <!-- BOOK COVER PLACEHOLDER (Centered) -->
+            <!-- BOOK COVER: Now using a robust DIV container for reliable placeholder functionality -->
             <div class="flex flex-col items-center justify-center">
-                <!-- Placeholder for Book Cover: Uses styled placehold.co URL -->
                 <a href="https://grey.com.np/products/the-awareness-framework" target="_blank"
                    class="inline-block transform hover:scale-[1.03] transition duration-300">
-                    <img src="https://placehold.co/320x500/0D1137/FFC107?text=The+Awareness+Framework" 
-                        alt="Stylized placeholder image for the book cover"
-                        class="w-64 md:w-80 h-auto shadow-2xl rounded-lg"
-                    >
+                    
+                    <!-- ROBUST PLACEHOLDER CONTAINER -->
+                    <div id="book-cover-container" 
+                         class="w-64 md:w-80 h-[400px] md:h-[500px] shadow-2xl rounded-lg bg-[var(--color-primary)] text-white flex items-center justify-center relative overflow-hidden"
+                         title="Book cover placeholder">
+                        
+                        <!-- The actual image is placed on top -->
+                        <img id="book-cover-img"
+                            src="book.png" 
+                            alt="The Awareness Framework book.png cover image"
+                            class="w-full h-full object-cover absolute top-0 left-0"
+                            style="opacity: 1;"
+                        >
+                        
+                        <!-- Placeholder Text (Initially Hidden) -->
+                        <span id="placeholder-text" class="text-xl font-heading p-4 text-center absolute z-10 hidden">
+                            Book Cover Not Found<br><small class="block text-sm mt-2 font-body italic opacity-75">Please add 'book.png' to the root folder.</small>
+                        </span>
+                    </div>
+                    <!-- END ROBUST PLACEHOLDER CONTAINER -->
                 </a>
             </div>
         </div>
@@ -427,29 +438,53 @@
         </div>
     </footer>
 
-    <!-- === JAVASCRIPT: FUNCTIONALITY & CANVAS ANIMATION === -->
+    <!-- === JAVASCRIPT: FUNCTIONALITY & CANVAS ANIMATION & IMAGE FALLBACK === -->
     <script>
         
         // --- 1. MOBILE MENU TOGGLE LOGIC ---
         const mobileMenuButton = document.getElementById('mobile-menu-button');
         const mobileNav = document.getElementById('mobile-nav');
 
-        // Check if elements exist before adding listeners 
         if (mobileMenuButton && mobileNav) {
             mobileMenuButton.addEventListener('click', () => {
-                // Toggle the 'hidden' class on the mobile nav
                 mobileNav.classList.toggle('hidden');
             });
 
-            // Close menu when a link is clicked (for better mobile UX)
             mobileNav.querySelectorAll('a').forEach(link => {
                 link.addEventListener('click', () => {
                     mobileNav.classList.add('hidden');
                 });
             });
         }
+        
+        // --- 2. ROBUST IMAGE FALLBACK HANDLER (Avoids broken icon) ---
+        function handleBookImageLoad() {
+            const img = document.getElementById('book-cover-img');
+            const placeholderText = document.getElementById('placeholder-text');
 
-        // --- 2. AWARENESS WAVE CANVAS ANIMATION (Perpetual Field) ---
+            if (!img || !placeholderText) {
+                console.error("Image or placeholder elements not found.");
+                return;
+            }
+
+            // Event listener to fire when the image fails to load (e.g., file not found, wrong path)
+            img.addEventListener('error', function() {
+                console.error("Book image failed to load. Showing elegant CSS placeholder.");
+                // 1. Hide the failed image element completely (using visibility/opacity for smooth effect)
+                img.style.opacity = '0';
+                img.style.visibility = 'hidden';
+                // 2. Show the instructional placeholder text which is centered in the container
+                placeholderText.classList.remove('hidden');
+            });
+            
+            // Note: No 'load' handler is strictly necessary since the image is visible by default (opacity: 1)
+        }
+        
+        // Call the image handler after the window has loaded all elements
+        window.addEventListener('load', handleBookImageLoad);
+
+
+        // --- 3. AWARENESS WAVE CANVAS ANIMATION (Perpetual Field) ---
         const canvas = document.getElementById('awarenessCanvas');
         
         if (!canvas) {
