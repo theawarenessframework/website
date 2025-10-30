@@ -620,12 +620,12 @@
             const messageTemplate = `
 *NEW BOOK ORDER*
 
-Name:     *_The Awareness Framework_*
-Quantity:  ${copies} Copies
-Amount:   ${CURRENCY_SYMBOL}${(copies * BOOK_PRICE).toLocaleString()}
-Customer: ${name}
-Phone:    ${phoneCode}${phoneNumber}
-Address:  ${address}, ${state}, ${country}
+*Name:* The Awareness Framework
+*Quantity:* ${copies} Copies
+*Amount:* ${CURRENCY_SYMBOL}${(copies * BOOK_PRICE).toLocaleString()}
+*Customer:* ${name}
+*Phone:* ${phoneCode}${phoneNumber}
+*Address:* ${address}, ${state}, ${country}
 
             `.trim();
             
