@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>The Awareness Framework | Sanjeev Khanal and Raheel Budha</title>
+    <title>The Awareness Framework</title>
     
     <!-- === FAVICON INCLUSION === -->
     <link rel="icon" type="image/x-icon" href="favicon.ico">
@@ -16,7 +16,7 @@
     {
       "@context": "https://schema.org",
       "@type": "Book",
-      "name": "The Awareness Framework: A Unified Theory of Reality",
+      "name": "The Awareness Framework",
       "author": [
         {
           "@type": "Person",
@@ -30,7 +30,7 @@
       "isbn": "9789937192835",
       "bookEdition": "1st Edition",
       "bookFormat": "Paperback",
-      "description": "A profound system that merges philosophy, physics, and consciousness to redefine how you understand existence, purpose, and self-organization.",
+      "description": "A profound system that merges philosophy, quantum physics, consciousness study and system-thinking to redefine how you understand existence, purpose, and self-organization. It provides you with a new perspective to see the life, existence and everything in-between.",
       "image": "book.png"
     }
     </script>
@@ -193,13 +193,6 @@
                     class="w-64 md:w-80 h-auto shadow-2xl rounded-lg transform hover:scale-[1.03] transition duration-300"
                     onerror="this.onerror=null; this.src='https://placehold.co/320x500/cccccc/333333?text=Book+Cover';"
                 >
-                
-                <!-- Explicit Buy Now Button below image -->
-                 <!-- Updated button to call the new flow function -->
-                 <button onclick="showModal(1)"
-                    class="mt-8 bg-[var(--color-primary)] text-white py-3 px-8 text-lg font-bold rounded-lg shadow-xl hover:bg-indigo-700 transition duration-300 transform hover:translate-y-[-2px]">
-                    Order Your Copy Now
-                </button>
 
                 <!-- Order Message Area (for feedback after confirmation) -->
                 <div id="order-message-area" class="mt-6 w-full max-w-xs md:max-w-md min-h-[40px] flex items-center justify-center">
@@ -303,7 +296,7 @@
     <section id="authors" class="section-transparent-secondary py-20 md:py-28">
         <div class="max-w-7xl mx-auto px-6">
             <h3 class="text-3xl sm:text-4xl font-bold text-center mb-16 tracking-tight">
-                Meet the Architects
+                Meet the Authors
             </h3>
 
             <div class="grid grid-cols-1 md:grid-cols-2 gap-12 md:gap-20">
@@ -433,7 +426,7 @@
     <script>
         // --- 1. GLOBAL CONSTANTS & ELEMENTS ---
         const BOOK_TITLE = "The Awareness Framework (Paperback)";
-        // PRICE UPDATE: Changed from $25.00 to NPR 1500
+        // PRICE UPDATE: Changed to NPR 1500
         const BOOK_PRICE = 1500; 
         const CURRENCY_SYMBOL = "NPR "; // Added currency symbol constant
         // WHATSAPP NUMBER: +977-9705005200 (using digits only for wa.me link)
@@ -516,7 +509,7 @@
                         <div class="mb-4">
                             <label for="name" class="block text-sm font-medium text-gray-700 mb-1">Full Name</label>
                             <input type="text" id="name" value="${orderDetails.name}" required
-                                class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-accent focus:border-accent transition duration-150" placeholder="John Doe">
+                                class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-accent focus:border-accent transition duration-150" placeholder="Ram Bahadur Magar">
                         </div>
 
                         <!-- Phone Number -->
@@ -524,13 +517,13 @@
                             <label for="phoneNumber" class="block text-sm font-medium text-gray-700 mb-1">Phone Number (Required for WA Order)</label>
                             <div class="flex gap-2">
                                 <select id="phoneCode" class="px-3 py-2 border border-gray-300 rounded-lg focus:ring-accent focus:border-accent">
-                                    <option value="+977" ${orderDetails.phoneCode === '+977' ? 'selected' : ''}>+977 (NPL)</option>
-                                    <option value="+91" ${orderDetails.phoneCode === '+91' ? 'selected' : ''}>+91 (IND)</option>
-                                    <option value="+1" ${orderDetails.phoneCode === '+1' ? 'selected' : ''}>+1 (USA/CAN)</option>
+                                    <option value="+977" ${orderDetails.phoneCode === '+977' ? 'selected' : ''}>+977 (NP)</option>
+                                    <option value="+91" ${orderDetails.phoneCode === '+91' ? 'selected' : ''}>+91 (IN)</option>
+                                    <option value="+1" ${orderDetails.phoneCode === '+1' ? 'selected' : ''}>+1 (US/CA)</option>
                                     <option value="+44" ${orderDetails.phoneCode === '+44' ? 'selected' : ''}>+44 (UK)</option>
                                 </select>
                                 <input type="tel" id="phoneNumber" value="${orderDetails.phoneNumber}" required
-                                    class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-accent focus:border-accent transition duration-150" placeholder="9812345678">
+                                    class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-accent focus:border-accent transition duration-150" placeholder="9876543210">
                             </div>
                         </div>
 
@@ -584,7 +577,7 @@
 
             // Simple validation
             if (!name || !phoneNumber || !country || !state || !address) {
-                showToast("Please fill out all necessary details.", 'error');
+                showToast("Please fill out all necessary details", 'error');
                 return;
             }
             
@@ -609,7 +602,7 @@
             modalContent.innerHTML = `
                 <div class="p-4 sm:p-8">
                     <h2 class="text-2xl font-bold text-primary-custom mb-2 border-b pb-2">2. Confirm Order & Quantity</h2>
-                    <p class="text-sm text-gray-500 mb-6">Review your details and select the number of copies.</p>
+                    <p class="text-sm text-gray-500 mb-6">Review your details and select the number of copies</p>
                     
                     <!-- Confirmation Details Box -->
                     <div class="bg-gray-50 p-4 rounded-lg mb-6 confirmation-scroll border border-gray-200">
@@ -623,7 +616,7 @@
                         <h3 class="font-semibold text-lg text-gray-700 mt-4 mb-3">Product:</h3>
                         <p class="text-sm text-gray-600"><strong>${BOOK_TITLE}</strong></p>
                         <!-- Price updated to use new constant and currency symbol -->
-                        <p class="text-sm text-gray-600">Estimated Price: ${CURRENCY_SYMBOL}${BOOK_PRICE.toLocaleString()} per copy</p>
+                        <p class="text-sm text-gray-600">Estimated Price: ${CURRENCY_SYMBOL}${BOOK_PRICE.toLocaleString()} </p>
                     </div>
 
                     <!-- Number of Copies Selector -->
@@ -660,10 +653,10 @@
             
             // 1. Construct the message content
             const messageTemplate = `
-*NEW BOOK ORDER - The Awareness Framework*
+*New Order for "The Awareness Framework"*
 
-Copies: ${copies}
-Estimated Total: ${CURRENCY_SYMBOL}${(copies * BOOK_PRICE).toLocaleString()}
+No. of Copies: ${copies}
+Total Price: ${CURRENCY_SYMBOL}${(copies * BOOK_PRICE).toLocaleString()}
 
 --- CUSTOMER DETAILS ---
 Name: ${name}
@@ -671,7 +664,6 @@ Phone: ${phoneCode}${phoneNumber}
 Shipping Address: ${address}
 Location: ${state}, ${country}
 
-_Please confirm final price and shipping costs. Thank you!_
             `.trim();
             
             // 2. Encode the message for the URL
