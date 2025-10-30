@@ -151,7 +151,7 @@
                 <h1 class="text-xl sm:text-2xl font-bold tracking-tight text-primary-custom">The Awareness Framework</h1>
             </div>
 
-            <!-- CENTER: Desktop Nav -->
+            <!-- CENTER: Desktop Nav (Hidden on Mobile) -->
             <nav id="nav-menu" class="hidden md:flex space-x-8 text-sm font-medium">
                 <a href="#hero" class="hover:text-gray-600 transition duration-150">Exploration</a>
                 <a href="#domains" class="hover:text-gray-600 transition duration-150">The Scope</a>
@@ -159,11 +159,14 @@
                 <a href="#contact" class="hover:text-gray-600 transition duration-150">Contact</a>
             </nav>
             
-            <!-- RIGHT SECTION: Desktop CTA Button (Rounded-lg) -->
-            <div class="hidden md:block">
-                <!-- BUY NOW: UPDATED LINK, rounded-lg -->
+            <!-- RIGHT SECTION: CTA Button (Visible on ALL Screens, Responsively Sized) -->
+            <div>
+                <!-- BUY NOW: Sized down for mobile (text-xs, py-1 px-3) and up for desktop (md:...) -->
                 <a href="https://grey.com.np/products/the-awareness-framework" target="_blank"
-                    class="border-2 border-[var(--color-primary)] text-[var(--color-primary)] bg-white py-2 px-6 text-sm font-bold rounded-lg transition duration-300 transform hover:scale-[1.05] hover:bg-[var(--color-primary)] hover:text-white">
+                    class="border-2 border-[var(--color-primary)] text-[var(--color-primary)] bg-white 
+                           py-1 px-3 text-xs md:py-2 md:px-6 md:text-sm 
+                           font-bold rounded-lg transition duration-300 
+                           transform hover:scale-[1.05] hover:bg-[var(--color-primary)] hover:text-white">
                     Buy Now
                 </a>
             </div>
