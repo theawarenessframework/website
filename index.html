@@ -648,15 +648,14 @@
             
             // 1. Construct the message content
             const messageTemplate = `
-* --- NEW ORDER RECEIVED ---*
-*The Awareness Framework:* ${copies} Copies
-*Total Amount:* ${CURRENCY_SYMBOL}${(copies * BOOK_PRICE).toLocaleString()}
+*NEW ORDER RECEIVED*
 
---- CUSTOMER DETAIL ---
-Name: ${name}
+Name: *_The Awareness Framework_*
+Quantity: ${copies} Copies
+Amount: ${CURRENCY_SYMBOL}${(copies * BOOK_PRICE).toLocaleString()}
+Customer: ${name}
 Phone: ${phoneCode}${phoneNumber}
-Shipping Address: ${address}
-Location: ${state}, ${country}
+Address: ${address}, ${state}, ${country}
 
             `.trim();
             
