@@ -1,0 +1,529 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The Awareness Framework | Sanjeev Khanal and Raheel Budha</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+    
+    <!-- === Structured Data (JSON-LD) for Search Engine Indexing (ISBN included) === -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Book",
+      "name": "The Awareness Framework: A Unified Theory of Reality",
+      "author": [
+        {
+          "@type": "Person",
+          "name": "Sanjeev Khanal"
+        },
+        {
+          "@type": "Person",
+          "name": "Raheel Budha"
+        }
+      ],
+      "isbn": "9789937192835",
+      "bookEdition": "1st Edition",
+      "bookFormat": "Paperback",
+      "description": "A profound system that merges philosophy, physics, and consciousness to redefine how you understand existence, purpose, and self-organization.",
+      "image": "book.png"
+    }
+    </script>
+
+    <style>
+        /* Custom Colors & Fonts */
+        :root {
+            --color-primary: #0D1137; /* Deep Indigo - For text and accents (now used for all CTAs) */
+            --color-secondary: #F7F8FC; /* Pale Blue-Gray - For subtle section backgrounds */
+            --color-accent: #FFC107; /* Vibrant Gold - Secondary color, now used only for highlights */
+            --color-footer: #1C2438; /* Dark Charcoal - For footer */
+            --font-heading: 'Playfair Display', serif;
+            --font-body: 'Inter', sans-serif;
+            /* NEW: Universal transparency variable for all content overlays */
+            --content-opacity: 0.95; 
+        }
+
+        body {
+            font-family: var(--font-body);
+            color: var(--color-primary);
+            background-color: #FFFFFF;
+        }
+
+        h1, h2, h3, h4 {
+            font-family: var(--font-heading);
+            color: var(--color-primary);
+        }
+
+        /* Utility Classes for Canvas and Wave Animation */
+        #awarenessCanvas {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            z-index: -1; 
+            pointer-events: none;
+        }
+        
+        /* === Semi-transparent backgrounds (95% opacity enforced by CSS variable) === */
+        
+        .section-transparent-white {
+            /* Pure White (255, 255, 255) with universal opacity */
+            background-color: rgba(255, 255, 255, var(--content-opacity)); 
+        }
+
+        .section-transparent-secondary {
+            /* Pale Blue-Gray (247, 248, 252) with universal opacity */
+            background-color: rgba(247, 248, 252, var(--content-opacity)); 
+        }
+
+        /* Transparent Header/Nav (Pure White with universal opacity) */
+        .header-transparent {
+            background-color: rgba(255, 255, 255, var(--content-opacity));
+        }
+
+        /* Transparent Footer (Dark Charcoal (28, 36, 56) with universal opacity) */
+        .footer-transparent-dark {
+            background-color: rgba(28, 36, 56, var(--content-opacity));
+        }
+        
+        /* Utility for custom primary color text */
+        .text-primary-custom {
+            color: var(--color-primary);
+        }
+
+        /* Hero section and other elements positioning */
+        .hero-section {
+            position: relative; 
+            overflow: hidden; 
+        }
+        
+        .hero-content {
+            position: relative;
+            z-index: 10; 
+        }
+    </style>
+</head>
+
+<body class="min-h-screen">
+    <!-- === FIXED BACKGROUND CANVAS === -->
+    <canvas id="awarenessCanvas"></canvas>
+
+    <!-- === 1. HEADER & NAVIGATION === -->
+    <header class="sticky top-0 z-50 header-transparent border-b border-gray-100 shadow-lg">
+        <div class="container mx-auto px-6 py-4 flex justify-between items-center max-w-7xl">
+            
+            <!-- LEFT SECTION: Mobile Menu Button & H1 -->
+            <div class="flex items-center gap-4">
+                 <!-- Mobile Menu Button (Hamburger on Left) -->
+                <button id="mobile-menu-button" 
+                    class="md:hidden p-3 rounded-full bg-accent shadow-xl hover:bg-yellow-500 transition duration-300 focus:outline-none z-50">
+                    <!-- Standard 3-line hamburger icon path -->
+                    <svg class="w-6 h-6 text-primary-custom" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+                    </svg>
+                </button>
+                <h1 class="text-xl sm:text-2xl font-bold tracking-tight text-primary-custom">The Awareness Framework</h1>
+            </div>
+
+            <!-- CENTER: Desktop Nav -->
+            <nav id="nav-menu" class="hidden md:flex space-x-8 text-sm font-medium">
+                <a href="#hero" class="hover:text-gray-600 transition duration-150">Exploration</a>
+                <a href="#domains" class="hover:text-gray-600 transition duration-150">The Scope</a>
+                <a href="#authors" class="hover:text-gray-600 transition duration-150">Authors</a>
+                <a href="#contact" class="hover:text-gray-600 transition duration-150">Contact</a>
+            </nav>
+            
+            <!-- RIGHT SECTION: Desktop CTA Button (Rounded-lg) -->
+            <div class="hidden md:block">
+                <!-- BUY NOW: UPDATED LINK, rounded-lg -->
+                <a href="https://grey.com.np/products/the-awareness-framework" target="_blank"
+                    class="border-2 border-[var(--color-primary)] text-[var(--color-primary)] bg-white py-2 px-6 text-sm font-bold rounded-lg transition duration-300 transform hover:scale-[1.05] hover:bg-[var(--color-primary)] hover:text-white">
+                    Buy Now
+                </a>
+            </div>
+        </div>
+
+        <!-- Mobile Dropdown Menu: Hidden by default and hidden on MD+ (Fixes visibility issue) -->
+        <nav id="mobile-nav" class="hidden md:hidden px-6 py-2 border-t border-gray-100 header-transparent">
+            <a href="#hero" class="block py-2 text-sm font-medium hover:bg-gray-50 transition duration-150">Exploration</a>
+            <a href="#domains" class="block py-2 text-sm font-medium hover:bg-gray-50 transition duration-150">The Scope</a>
+            <a href="#authors" class="block py-2 text-sm font-medium hover:bg-gray-50 transition duration-150">Authors</a>
+            <a href="#contact" class="block py-2 text-sm font-medium hover:bg-gray-50 transition duration-150">Contact</a>
+        </nav>
+    </header>
+
+
+    <!-- === 2. HERO SECTION (Exploration - Now clean) === -->
+    <section id="hero" class="hero-section section-transparent-white pt-16 pb-20 md:pt-24 md:pb-32 text-center">
+        <div class="hero-content max-w-5xl mx-auto px-6">
+            <!-- HEADING -->
+            <h2 class="text-4xl sm:text-5xl md:text-6xl font-bold tracking-tight mb-4">
+                The Awareness Framework
+            </h2>
+            <!-- SUBHEADING/HOOK TEXT -->
+            <p class="text-lg sm:text-xl italic font-light max-w-3xl mx-auto mb-16 text-gray-700 text-justify">
+                We invite you to explore reality through a new lens, where <strong>the observer is</strong> not the by-product of existence but rather the fundamental fabric upon which reality unfolds. We offer this not as a doctrine, but as a new perspective where everything seems connected and self-sustaining.
+            </p>
+
+            <!-- BOOK COVER (Centered) -->
+            <div class="flex flex-col items-center justify-center">
+                <!-- Book Cover: UPDATED LINK & SRC -->
+                <a href="https://grey.com.np/products/the-awareness-framework" target="_blank"
+                   class="inline-block transform hover:scale-[1.03] transition duration-300">
+                    <img src="book.png" alt="Book cover of The Awareness Framework"
+                        class="w-64 md:w-80 h-auto shadow-2xl rounded-lg" 
+                        onerror="this.onerror=null; this.src='https://placehold.co/320x500/cccccc/333333?text=Book+Cover';"
+                    >
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- === 3. CORE BOOK INSIGHTS (Reworked Domain Cards) === -->
+    <section id="domains" class="section-transparent-secondary py-20 md:py-28">
+        <div class="max-w-7xl mx-auto px-6">
+            <h3 class="text-3xl sm:text-4xl font-bold text-center mb-16 tracking-tight">
+                Core Book Insights
+            </h3>
+
+            <!-- 8 Insight Cards in a Responsive Grid -->
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+                
+                <!-- Insight 1: Observer as a Base -->
+                <div class="bg-white p-6 rounded-xl shadow-lg border-l-4 border-accent opacity-95">
+                    <h4 class="text-lg font-bold mb-2">The Observer as Base</h4>
+                    <p class="text-sm text-gray-600">
+                        The fundamental concept that the Observer is the primary foundation, defined as a non-energetic informational constant. Consciousness is considered a byproduct of the Observer's interaction with the system, establishing the core system architecture.
+                    </p>
+                </div>
+
+                <!-- Insight 2: Nature of Reality (R=OMP) -->
+                <div class="bg-white p-6 rounded-xl shadow-lg border-l-4 border-accent opacity-95">
+                    <h4 class="text-lg font-bold mb-2">Reality: R=OMP (Observer, Memory, Pattern)</h4>
+                    <p class="text-sm text-gray-600">
+                        Introducing the core equation that defines structural reality: <strong>Reality = Observer + Memory + Pattern</strong>. This principle highlights how Pattern analysis is the active step that gives rise to the perception of reality.
+                    </p>
+                </div>
+                
+                <!-- Insight 3: Causality, Time, and Space -->
+                <div class="bg-white p-6 rounded-xl shadow-lg border-l-4 border-accent opacity-95">
+                    <h4 class="text-lg font-bold mb-2">Causality, Time, and Space</h4>
+                    <p class="text-sm text-gray-600">
+                        An exploration of how the observer's internal system (Memory) creates the perception of linear time and dimensional space.
+                    </p>
+                </div>
+                
+                <!-- Insight 4: Coherence and Balance -->
+                <div class="bg-white p-6 rounded-xl shadow-lg border-l-4 border-accent opacity-95">
+                    <h4 class="text-lg font-bold mb-2">Coherence and Balance</h4>
+                    <p class="text-sm text-gray-600">
+                        The essential requirement for systemic health, achieved through the dynamic equilibrium between exploration (vastness) and clarity (precision).
+                    </p>
+                </div>
+                
+                <!-- Insight 5: Alignment -->
+                <div class="bg-white p-6 rounded-xl shadow-lg border-l-4 border-accent opacity-95">
+                    <h4 class="text-lg font-bold mb-2">The Principle of Alignment</h4>
+                    <p class="text-sm text-gray-600">
+                        Defining the state of internal coherence where the system's inherent duality (Memory and Pattern) is balanced, ensuring the system is internally consistent and self-sufficient.
+                    </p>
+                </div>
+
+                <!-- Insight 6: Biology and Nature of Life -->
+                <div class="bg-white p-6 rounded-xl shadow-lg border-l-4 border-accent opacity-95">
+                    <h4 class="text-lg font-bold mb-2">Biology and Nature of Life</h4>
+                    <p class="text-sm text-gray-600">
+                        Examining life through the lens of system architecture: the minimum necessary structure required for self-sustaining coherence against entropy.
+                    </p>
+                </div>
+                
+                <!-- Insight 7: Extension of Humanity -->
+                <div class="bg-white p-6 rounded-xl shadow-lg border-l-4 border-accent opacity-95">
+                    <h4 class="text-lg font-bold mb-2">Extension of Human System</h4>
+                    <p class="text-sm text-gray-600">
+                        How the Framework applies beyond the individual, influencing societal structures, technology, and collective awareness.
+                    </p>
+                </div>
+                
+                <!-- Insight 8: Ethics and Health -->
+                <div class="bg-white p-6 rounded-xl shadow-lg border-l-4 border-accent opacity-95">
+                    <h4 class="text-lg font-bold mb-2">Ethics through System Health</h4>
+                    <p class="text-sm text-gray-600">
+                        Establishing a new ethical framework rooted in maintaining systemic coherence, health, and minimum entropy (the opposite of disorder).
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- === 4. CORE PHILOSOPHY & QUOTE === -->
+    <section class="section-transparent-white py-20 md:py-28">
+        <div class="max-w-4xl mx-auto px-6 text-center">
+            <p class="text-2xl md:text-3xl italic font-light text-gray-800 leading-relaxed border-y-2 border-gray-200 py-6">
+                "The universe is not a scattered orchestra of parts but a single composition in motion: each particle, pattern, and pulse contributing to a music vast enough to include its own silence."
+            </p>
+            <!-- Bolded book name -->
+            <p class="text-lg mt-8 font-medium text-gray-500">
+                — A core tenet of <strong>The Awareness Framework</strong>
+            </p>
+        </div>
+    </section>
+
+    <!-- === 5. MEET THE AUTHORS === -->
+    <section id="authors" class="section-transparent-secondary py-20 md:py-28">
+        <div class="max-w-7xl mx-auto px-6">
+            <h3 class="text-3xl sm:text-4xl font-bold text-center mb-16 tracking-tight">
+                Meet the Architects
+            </h3>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-12 md:gap-20">
+                <!-- Author 1: Sanjeev Khanal (UPDATED SRC) -->
+                <div class="flex flex-col items-center text-center">
+                    <img src="sanjeev.png" alt="Sanjeev Khanal Headshot"
+                        class="w-36 h-36 rounded-full object-cover border-4 border-accent shadow-md mb-6"
+                        onerror="this.onerror=null; this.src='https://placehold.co/150x150/EEEEEE/333333?text=Sanjeev';"
+                    >
+                    <h4 class="text-2xl font-bold mb-2">Sanjeev Khanal</h4>
+                    <p class="text-sm italic text-gray-500 mb-4">Mind Drawn to Vastness (Exploration)</p>
+                    <!-- Justified paragraph -->
+                    <p class="text-gray-600 mb-4 text-justify">
+                        A mind drawn to vastness: to take the smallest spark of thought and project it toward infinity. Sanjeev sees patterns where others see parts, weaving intuition with quiet reasoning. To him, awareness is a living field, one that breathes through everything that exists. His exploration continues as an open inquiry into how observation shapes the unfolding of experience.
+                    </p>
+                    <!-- Social Icons for Sanjeev (FIXED ICONS) -->
+                    <div class="flex space-x-5 text-primary-custom">
+                        <!-- Facebook Icon (Standard Path) -->
+                        <a href="[Sanjeev's Facebook]" target="_blank" class="hover:text-accent transition duration-150">
+                            <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24"><path d="M22 12c0-5.52-4.48-10-10-10S2 6.48 2 12c0 4.84 3.44 8.87 8 9.8V15H7v-3h3V9.5C10 6.47 11.53 4.7 15.56 4.7c1.78 0 3.3.32 3.3.32v3.3h-1.68c-1.54 0-2.02.96-2.02 1.96V12h3.6l-.58 3h-3.02v6.8c4.56-.93 8-4.84 8-9.8z"/></svg>
+                        </a>
+                        <!-- LinkedIn Icon (Standard Path) -->
+                        <a href="[Sanjeev's LinkedIn]" target="_blank" class="hover:text-accent transition duration-150">
+                            <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24"><path d="M19 3a2 2 0 012 2v14a2 2 0 01-2 2H5a2 2 0 01-2-2V5a2 2 0 012-2h14zM8 12H5V9h3v3zM6.5 7.5A1.5 1.5 0 005 9.01v.01A1.5 1.5 0 006.5 10.5h.01A1.5 1.5 0 008 9.01v-.01A1.5 1.5 0 006.5 7.5zm11 10.5h-3V14c0-1.24-.54-2-1.2-2.75-.66-.74-1.52-1.25-2.5-1.25s-1.84.51-2.5 1.25c-.66.75-1.2 1.51-1.2 2.75v4H8V9h2.5l.5 1.5h.01a3.6 3.6 0 013-1.5c2.4 0 4.5 1.8 4.5 4.75V18z"/></svg>
+                        </a>
+                        <!-- X/Twitter Icon (Updated to modern X logo shape, clean path) -->
+                        <a href="[Sanjeev's X/Twitter]" target="_blank" class="hover:text-accent transition duration-150">
+                            <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.229-8.26L1 2.25h7.828l3.642 5.022L18.244 2.25zM17.29 19.458l1.764.927.842-.927-2.606-2.72L13.116 8.4h-.008L4.35 19.458l1.764.928.842-.927 2.606-2.72L14.884 8.4h.008l4.56 5.958L17.29 19.458z"/></svg>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Author 2: Raheel Budha (UPDATED SRC) -->
+                <div class="flex flex-col items-center text-center">
+                    <img src="raheel.png" alt="Raheel Budha Headshot"
+                        class="w-36 h-36 rounded-full object-cover border-4 border-accent shadow-md mb-6"
+                        onerror="this.onerror=null; this.src='https://placehold.co/150x150/EEEEEE/333333?text=Raheel';"
+                    >
+                    <h4 class="text-2xl font-bold mb-2">Raheel Budha</h4>
+                    <p class="text-sm italic text-gray-500 mb-4">Mind Tuned to Clarity (Precision)</p>
+                    <!-- Justified paragraph -->
+                    <p class="text-gray-600 mb-4 text-justify">
+                        A mind tuned to clarity: to slow down within complexity and reveal the delicate order hidden inside. Raheel's attention moves inward, tracing the subtle lines that connect perception, thought, and meaning. He seeks coherence through stillness, bringing definition where there is depth and light where there is density. For him, awareness is precision, the art of seeing what holds the world together from within.
+                    </p>
+                    <!-- Social Icons for Raheel (FIXED ICONS) -->
+                    <div class="flex space-x-5 text-primary-custom">
+                         <!-- Facebook Icon (Standard Path) -->
+                        <a href="[Raheel's Facebook]" target="_blank" class="hover:text-accent transition duration-150">
+                            <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24"><path d="M22 12c0-5.52-4.48-10-10-10S2 6.48 2 12c0 4.84 3.44 8.87 8 9.8V15H7v-3h3V9.5C10 6.47 11.53 4.7 15.56 4.7c1.78 0 3.3.32 3.3.32v3.3h-1.68c-1.54 0-2.02.96-2.02 1.96V12h3.6l-.58 3h-3.02v6.8c4.56-.93 8-4.84 8-9.8z"/></svg>
+                        </a>
+                        <!-- LinkedIn Icon (Standard Path) -->
+                        <a href="[Raheel's LinkedIn]" target="_blank" class="hover:text-accent transition duration-150">
+                            <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24"><path d="M19 3a2 2 0 012 2v14a2 2 0 01-2 2H5a2 2 0 01-2-2V5a2 2 0 012-2h14zM8 12H5V9h3v3zM6.5 7.5A1.5 1.5 0 005 9.01v.01A1.5 1.5 0 006.5 10.5h.01A1.5 1.5 0 008 9.01v-.01A1.5 1.5 0 006.5 7.5zm11 10.5h-3V14c0-1.24-.54-2-1.2-2.75-.66-.74-1.52-1.25-2.5-1.25s-1.84.51-2.5 1.25c-.66.75-1.2 1.51-1.2 2.75v4H8V9h2.5l.5 1.5h.01a3.6 3.6 0 013-1.5c2.4 0 4.5 1.8 4.5 4.75V18z"/></svg>
+                        </a>
+                        <!-- X/Twitter Icon (Updated to modern X logo shape, clean path) -->
+                        <a href="[Raheel's X/Twitter]" target="_blank" class="hover:text-accent transition duration-150">
+                            <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.229-8.26L1 2.25h7.828l3.642 5.022L18.244 2.25zM17.29 19.458l1.764.927.842-.927-2.606-2.72L13.116 8.4h-.008L4.35 19.458l1.764.928.842-.927 2.606-2.72L14.884 8.4h.008l4.56 5.958L17.29 19.458z"/></svg>
+                        </a>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="max-w-3xl mx-auto mt-16 text-center text-lg text-gray-600">
+                <!-- Quote confirmed as clean -->
+                <p>
+                    Our collaboration reflects the same principle the book describes: that reality unfolds through delicate equilibrium, through the meeting of perspectives that refine one another until coherence is achieved.
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- === 6. FINAL INVITATION & CTA / DIALOGUE (Reworked) === -->
+    <section id="contact" class="section-transparent-white py-20 md:py-28 text-center">
+        <!-- New, simplified heading -->
+        <h3 class="text-3xl sm:text-4xl font-bold mb-6 tracking-tight">
+            Share Your Insights
+        </h3>
+        <p class="text-xl max-w-2xl mx-auto mb-10 text-gray-600">
+            The Framework is an ongoing inquiry. Share your reflections, applications, or questions by joining the community dialogue.
+        </p>
+        <!-- CTA 3: Join Discussion (still rounded-full for visual contrast) -->
+        <a href="https://chat.whatsapp.com/LekTStYvWhT7Dwfpbo0MPv" target="_blank"
+            class="inline-flex items-center justify-center bg-[var(--color-primary)] text-white py-4 px-10 text-xl font-bold rounded-full shadow-xl hover:bg-indigo-800 transition duration-300 transform hover:translate-y-[-2px]">
+            <!-- Clean Chat Bubble SVG Icon -->
+            <svg class="w-6 h-6 mr-3" fill="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                <!-- Simple speech bubble path -->
+                <path d="M20 2H4C2.9 2 2 2.9 2 4v16l4-4h14c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2z"/>
+            </svg>
+            Join Discussion
+        </a>
+        <!-- Updated text and mailto link -->
+        <p class="mt-8 text-sm text-gray-500">
+            For more inquiries, please contact: <a href="mailto:mail@sanjeevkhanal.com.np" class="underline hover:text-primary-custom">mail@sanjeevkhanal.com.np</a>
+        </p>
+    </section>
+
+    <!-- === 7. FOOTER === -->
+    <footer class="footer-transparent-dark text-gray-300 py-10">
+        <div class="container mx-auto px-6 flex flex-col sm:flex-row justify-between items-center text-center sm:text-left text-sm max-w-7xl">
+            <!-- ISBN Added Here -->
+            <p class="mb-2 sm:mb-0">ISBN: 9789937192835 | &copy; 2025 Sanjeev Khanal and Raheel Budha.</p>
+            <div class="flex space-x-4 mt-4 sm:mt-0">
+                <a href="#hero" class="hover:text-white transition duration-150">Exploration</a>
+                <a href="#domains" class="hover:text-white transition duration-150">Domains</a>
+                <a href="#authors" class="hover:text-white transition duration-150">Authors</a>
+            </div>
+        </div>
+    </footer>
+
+    <!-- === JAVASCRIPT: FUNCTIONALITY & CANVAS ANIMATION === -->
+    <script>
+        
+        // --- 1. MOBILE MENU TOGGLE LOGIC ---
+        const mobileMenuButton = document.getElementById('mobile-menu-button');
+        const mobileNav = document.getElementById('mobile-nav');
+
+        // Check if elements exist before adding listeners 
+        if (mobileMenuButton && mobileNav) {
+            mobileMenuButton.addEventListener('click', () => {
+                // Toggle the 'hidden' class on the mobile nav
+                mobileNav.classList.toggle('hidden');
+            });
+
+            // Close menu when a link is clicked (for better mobile UX)
+            mobileNav.querySelectorAll('a').forEach(link => {
+                link.addEventListener('click', () => {
+                    mobileNav.classList.add('hidden');
+                });
+            });
+        }
+
+        // --- 2. AWARENESS WAVE CANVAS ANIMATION (Perpetual Field) ---
+        const canvas = document.getElementById('awarenessCanvas');
+        
+        if (!canvas) {
+            console.error("Canvas element not found.");
+        } else {
+            const ctx = canvas.getContext('2d');
+            
+            let rings = [];
+            
+            // Configuration for Continuous Wave Effect
+            const MAX_RINGS = 30; 
+            const RING_RGB = '13, 17, 55'; // Deep Indigo RGB values
+            const VISIBILITY_FACTOR = 0.20; 
+            const GENERATION_INTERVAL_FRAMES = 100; // Interval for spacing
+            const RING_SPAWN_RADIUS = 5; 
+            const RING_SPEED = 0.2; 
+
+            // Function to resize the canvas to the window's full viewport
+            function resizeCanvas() {
+                canvas.width = window.innerWidth;
+                canvas.height = window.innerHeight;
+            }
+
+            resizeCanvas();
+            window.addEventListener('resize', resizeCanvas); 
+
+            // Ring constructor
+            function Ring(x, y) {
+                this.x = x;
+                this.y = y;
+                this.radius = RING_SPAWN_RADIUS; 
+                this.opacity = 1;
+                this.speed = RING_SPEED; 
+                this.maxRadius = Math.max(window.innerWidth, window.innerHeight) * 0.4;
+            }
+
+            Ring.prototype.update = function() {
+                this.radius += this.speed;
+                this.opacity = 1 - ((this.radius - RING_SPAWN_RADIUS) / (this.maxRadius - RING_SPAWN_RADIUS));
+            };
+
+            Ring.prototype.draw = function() {
+                const currentOpacity = this.opacity * VISIBILITY_FACTOR; 
+                const shadowOpacity = currentOpacity * 0.4; 
+
+                // Apply Subtle Shadow/Glow effect for clarity
+                ctx.shadowColor = 'rgba(' + RING_RGB + ', ' + shadowOpacity + ')';
+                ctx.shadowBlur = 12; 
+                ctx.shadowOffsetX = 0;
+                ctx.shadowOffsetY = 0;
+
+                ctx.beginPath();
+                ctx.arc(this.x, this.y, this.radius, 0, Math.PI * 2, false);
+                
+                ctx.strokeStyle = 'rgba(' + RING_RGB + ', ' + currentOpacity + ')'; 
+                ctx.lineWidth = 10; 
+                ctx.stroke();
+
+                // Reset shadow after drawing the ring to avoid affecting other elements
+                ctx.shadowBlur = 0; 
+                ctx.shadowColor = 'transparent'; 
+            };
+            
+            // Initialize rings to simulate an already established wave
+            function initializePerpetualField() {
+                const radiusIncrement = RING_SPEED * GENERATION_INTERVAL_FRAMES; 
+                const centerX = canvas.width / 2;
+                const centerY = canvas.height / 2;
+
+                for (let i = 0; i < MAX_RINGS; i++) {
+                    const ring = new Ring(centerX, centerY);
+                    ring.radius = (i * radiusIncrement) + RING_SPAWN_RADIUS; 
+                    ring.opacity = 1 - ((ring.radius - RING_SPAWN_RADIUS) / (ring.maxRadius - RING_SPAWN_RADIUS));
+                    
+                    if (ring.opacity > 0) {
+                        rings.push(ring);
+                    }
+                }
+            }
+
+            // The main animation loop
+            let frameCount = 0;
+            function animate() {
+                // Clear the canvas with a faint white layer for subtle trail/blur
+                ctx.fillStyle = 'rgba(255, 255, 255, 0.2)'; 
+                ctx.fillRect(0, 0, canvas.width, canvas.height); 
+
+                // New ring generation
+                if (frameCount % GENERATION_INTERVAL_FRAMES === 0 && rings.length < MAX_RINGS) { 
+                    const centerX = canvas.width / 2;
+                    const centerY = canvas.height / 2;
+                    rings.push(new Ring(centerX, centerY)); 
+                }
+
+                // Update and draw rings
+                for (let i = 0; i < rings.length; i++) {
+                    rings[i].update();
+                    rings[i].draw();
+
+                    // Remove rings that have reached or passed their maximum radius
+                    if (rings[i].radius >= rings[i].maxRadius || rings[i].opacity <= 0) {
+                        rings.splice(i, 1);
+                        i--;
+                    }
+                }
+                
+                frameCount++;
+                requestAnimationFrame(animate);
+            }
+            
+            // 1. Initialize the field state immediately with 30 spaced rings
+            initializePerpetualField();
+            
+            // 2. Start the perpetual animation loop immediately
+            animate();
+        }
+    </script>
+</body>
+</html>
