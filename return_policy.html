@@ -1,0 +1,336 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Return Policy | The Awareness Framework</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+    
+    <link rel="icon" href="favicon.ico" type="image/x-icon">
+    
+    <style>
+        /* Custom Colors & Fonts (Copied from the main page for consistency) */
+        :root {
+            --color-primary: #0D1137; /* Deep Indigo */
+            --color-secondary: #F7F8FC; /* Pale Blue-Gray */
+            --color-accent: #FFC107; /* Vibrant Gold */
+            --color-footer: #1C2438; /* Dark Charcoal */
+            --font-heading: 'Playfair Display', serif;
+            --font-body: 'Inter', sans-serif;
+            --content-opacity: 0.95; 
+        }
+
+        body {
+            font-family: var(--font-body);
+            color: var(--color-primary);
+            background-color: #FFFFFF;
+        }
+
+        h1, h2, h3, h4 {
+            font-family: var(--font-heading);
+            color: var(--color-primary);
+        }
+
+        /* Canvas and Transparency Utilities */
+        #awarenessCanvas {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            z-index: -1; 
+            pointer-events: none;
+        }
+        
+        .section-transparent-white {
+            background-color: rgba(255, 255, 255, var(--content-opacity)); 
+        }
+
+        .header-transparent {
+            background-color: rgba(255, 255, 255, var(--content-opacity));
+        }
+
+        .footer-transparent-dark {
+            background-color: rgba(28, 36, 56, var(--content-opacity));
+        }
+        
+        .text-primary-custom {
+            color: var(--color-primary);
+        }
+    </style>
+</head>
+
+<body class="min-h-screen">
+    <!-- === FIXED BACKGROUND CANVAS === -->
+    <canvas id="awarenessCanvas"></canvas>
+
+    <!-- === 1. HEADER & NAVIGATION === -->
+    <header class="sticky top-0 z-50 header-transparent border-b border-gray-100 shadow-lg">
+        <div class="container mx-auto px-6 py-4 flex justify-between items-center max-w-7xl">
+            
+            <!-- LEFT SECTION: Mobile Menu Button & H1 -->
+            <div class="flex items-center gap-4">
+                 <!-- Mobile Menu Button (Hamburger on Left) -->
+                <button id="mobile-menu-button" 
+                    class="md:hidden p-3 rounded-full bg-accent shadow-xl hover:bg-yellow-500 transition duration-300 focus:outline-none z-50">
+                    <svg class="w-6 h-6 text-primary-custom" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+                    </svg>
+                </button>
+                <h1 class="text-xl sm:text-2xl font-bold tracking-tight text-primary-custom">The Awareness Framework</h1>
+            </div>
+
+            <!-- CENTER: Desktop Nav (Link back to main page) -->
+            <nav id="nav-menu" class="hidden md:flex space-x-8 text-sm font-medium">
+                <!-- LINK UPDATED to user's specified absolute URL -->
+                <a href="https://theawarenessframework.github.io/website/" class="hover:text-gray-600 transition duration-150 font-bold text-gray-800">← Back to Main Page</a>
+            </nav>
+            
+            <!-- RIGHT SECTION: CTA Button (Visible on ALL Screens) -->
+            <div>
+                <!-- BUY NOW: Consistent styling with main page -->
+                <a href="https://grey.com.np/products/the-awareness-framework" target="_blank"
+                    class="border-2 border-[var(--color-primary)] text-[var(--color-primary)] bg-white 
+                           py-1 px-3 text-xs md:py-2 md:px-6 md:text-sm 
+                           font-bold rounded-lg transition duration-300 
+                           transform hover:scale-[1.05] hover:bg-[var(--color-primary)] hover:text-white">
+                    Buy Now
+                </a>
+            </div>
+        </div>
+
+        <!-- Mobile Dropdown Menu: Hidden by default -->
+        <nav id="mobile-nav" class="hidden md:hidden px-6 py-2 border-t border-gray-100 header-transparent">
+             <!-- LINK UPDATED to user's specified absolute URL -->
+             <a href="https://theawarenessframework.github.io/website/" class="block py-2 text-sm font-medium hover:bg-gray-50 transition duration-150">← Back to Main Page</a>
+        </nav>
+    </header>
+
+    
+    <!-- === 2. RETURN POLICY CONTENT SECTION === -->
+    <section class="section-transparent-white pt-16 pb-20 md:pt-24 md:pb-32">
+        <div class="max-w-4xl mx-auto px-6">
+            
+            <!-- MAIN HEADING -->
+            <h2 class="text-4xl sm:text-5xl md:text-6xl font-bold tracking-tight mb-8 text-center">
+                Return & Refund Policy
+            </h2>
+            
+            <!-- Last Updated Info -->
+            <p class="text-center text-sm text-gray-500 mb-12">
+                Last updated: October 30, 2025
+            </p>
+            
+            <!-- Policy Sections -->
+
+            <!-- 1. GENERAL RETURN WINDOW (UPDATED: 7 days) -->
+            <div class="mb-10 p-6 rounded-xl border border-gray-200 shadow-md">
+                <h3 class="text-2xl font-bold mb-4 border-b pb-2">1. Eligibility and Return Window</h3>
+                <p class="text-gray-700 mb-4">
+                    We want you to be completely satisfied with your purchase of <strong>The Awareness Framework</strong>. You must initiate a return request <strong>within 7 calendar days</strong> of receiving your physical book.
+                </p>
+                <p class="text-gray-700">
+                    To be eligible for a return, your item must be <strong>unused</strong> and in the <strong>same condition</strong> that you received it. This means the book must have no visible signs of wear, creasing, writing, or damage. It must also be in the original packaging, if applicable.
+                </p>
+            </div>
+
+            <!-- 2. DAMAGED OR INCORRECT ITEMS -->
+            <div class="mb-10 p-6 rounded-xl border border-red-200 bg-red-50 shadow-md">
+                <h3 class="text-2xl font-bold mb-4 border-b pb-2 text-red-700">2. Damaged or Defective Books</h3>
+                <p class="text-gray-800 mb-4">
+                    If you receive a book that is damaged due to shipping or contains a manufacturing defect (e.g., missing pages, inverted print), please contact us immediately.
+                </p>
+                <ul class="list-disc list-inside space-y-2 pl-4 text-gray-700">
+                    <li>You must report the damage <strong>within 7 days</strong> of delivery.</li>
+                    <li>Please provide your <strong>Order Number</strong> and clear <strong>photographs</strong> of the damage.</li>
+                    <li>We will cover all costs associated with returning the damaged item and shipping you a replacement.</li>
+                </ul>
+            </div>
+            
+            <!-- 3. HOW TO INITIATE A RETURN -->
+            <div class="mb-10 p-6 rounded-xl border border-gray-200 shadow-md">
+                <h3 class="text-2xl font-bold mb-4 border-b pb-2">3. How to Initiate a Return</h3>
+                <p class="text-gray-700 mb-4">
+                    To start a return, please send an email to our support team with the subject line: <strong>"Return Request - [Your Order Number]"</strong>.
+                </p>
+                <p class="text-gray-700 mb-4 font-bold">
+                    Email Address: <a href="mailto:mail@sanjeevkhanal.com.np" class="underline hover:text-primary-custom">mail@sanjeevkhanal.com.np</a>
+                </p>
+                <p class="text-gray-700">
+                    In your email, please include: (a) Your Order Number, (b) The reason for the return, and (c) Photos if the item is damaged. We will respond with return shipping instructions within 2-3 business days.
+                </p>
+            </div>
+
+            <!-- 4. REFUNDS (UPDATED: Payment methods) -->
+            <div class="mb-10 p-6 rounded-xl border border-gray-200 shadow-md">
+                <h3 class="text-2xl font-bold mb-4 border-b pb-2">4. Refunds and Shipping Costs</h3>
+                <ul class="list-disc list-inside space-y-3 pl-4 text-gray-700">
+                    <li><strong class="text-primary-custom">Return Shipping:</strong> You will be responsible for paying for your own shipping costs for returning your item unless the return is due to damage or an error on our part. Shipping costs are non-refundable.</li>
+                    <li><strong class="text-primary-custom">Processing:</strong> Once we receive your returned book and confirm its condition, we will process your refund.</li>
+                    <li><strong class="text-primary-custom">Refund Method:</strong> A credit will automatically be applied to your original method of payment (e.g., online payment, cash on delivery (COD), credit card, PayPal) within <strong>7-10 business days</strong>.</li>
+                </ul>
+            </div>
+            
+            <!-- Final Note -->
+            <div class="mt-12 p-4 text-center text-gray-600 bg-gray-50 rounded-lg">
+                <p class="font-medium">
+                    Please note that this policy applies only to physical book purchases. All digital products (e-books, audiobooks, etc.), if offered, are non-refundable once downloaded.
+                </p>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- === 3. FOOTER === -->
+    <footer class="footer-transparent-dark text-gray-300 py-10">
+        <div class="container mx-auto px-6 flex flex-col sm:flex-row justify-between items-center text-center sm:text-left text-sm max-w-7xl">
+            <!-- ISBN Added Here -->
+            <p class="mb-2 sm:mb-0">ISBN: 9789937192835 | &copy; 2025 Sanjeev Khanal and Raheel Budha.</p>
+            <div class="flex space-x-4 mt-4 sm:mt-0">
+                <!-- LINK UPDATED to user's specified absolute URL -->
+                <a href="https://theawarenessframework.github.io/website/" class="hover:text-white transition duration-150">Main Page</a>
+                <a href="#top" class="hover:text-white transition duration-150">Policy</a>
+            </div>
+        </div>
+    </footer>
+
+    <!-- === JAVASCRIPT: FUNCTIONALITY & CANVAS ANIMATION === -->
+    <script>
+        
+        // --- 1. MOBILE MENU TOGGLE LOGIC ---
+        const mobileMenuButton = document.getElementById('mobile-menu-button');
+        const mobileNav = document.getElementById('mobile-nav');
+
+        if (mobileMenuButton && mobileNav) {
+            mobileMenuButton.addEventListener('click', () => {
+                mobileNav.classList.toggle('hidden');
+            });
+
+            mobileNav.querySelectorAll('a').forEach(link => {
+                link.addEventListener('click', () => {
+                    mobileNav.classList.add('hidden');
+                });
+            });
+        }
+        
+        // --- 2. AWARENESS WAVE CANVAS ANIMATION (Perpetual Field) ---
+        const canvas = document.getElementById('awarenessCanvas');
+        
+        if (!canvas) {
+            console.error("Canvas element not found.");
+        } else {
+            const ctx = canvas.getContext('2d');
+            
+            let rings = [];
+            
+            // Configuration for Continuous Wave Effect
+            const MAX_RINGS = 30; 
+            const RING_RGB = '13, 17, 55'; // Deep Indigo RGB values
+            const VISIBILITY_FACTOR = 0.20; 
+            const GENERATION_INTERVAL_FRAMES = 100; // Interval for spacing
+            const RING_SPAWN_RADIUS = 5; 
+            const RING_SPEED = 0.2; 
+
+            // Function to resize the canvas to the window's full viewport
+            function resizeCanvas() {
+                canvas.width = window.innerWidth;
+                canvas.height = window.innerHeight;
+            }
+
+            resizeCanvas();
+            window.addEventListener('resize', resizeCanvas); 
+
+            // Ring constructor
+            function Ring(x, y) {
+                this.x = x;
+                this.y = y;
+                this.radius = RING_SPAWN_RADIUS; 
+                this.opacity = 1;
+                this.speed = RING_SPEED; 
+                this.maxRadius = Math.max(window.innerWidth, window.innerHeight) * 0.4;
+            }
+
+            Ring.prototype.update = function() {
+                this.radius += this.speed;
+                this.opacity = 1 - ((this.radius - RING_SPAWN_RADIUS) / (this.maxRadius - RING_SPAWN_RADIUS));
+            };
+
+            Ring.prototype.draw = function() {
+                const currentOpacity = this.opacity * VISIBILITY_FACTOR; 
+                const shadowOpacity = currentOpacity * 0.4; 
+
+                // Apply Subtle Shadow/Glow effect for clarity
+                ctx.shadowColor = 'rgba(' + RING_RGB + ', ' + shadowOpacity + ')';
+                ctx.shadowBlur = 12; 
+                ctx.shadowOffsetX = 0;
+                ctx.shadowOffsetY = 0;
+
+                ctx.beginPath();
+                ctx.arc(this.x, this.y, this.radius, 0, Math.PI * 2, false);
+                
+                ctx.strokeStyle = 'rgba(' + RING_RGB + ', ' + currentOpacity + ')'; 
+                ctx.lineWidth = 10; 
+                ctx.stroke();
+
+                // Reset shadow after drawing the ring to avoid affecting other elements
+                ctx.shadowBlur = 0; 
+                ctx.shadowColor = 'transparent'; 
+            };
+            
+            // Initialize rings to simulate an already established wave
+            function initializePerpetualField() {
+                const radiusIncrement = RING_SPEED * GENERATION_INTERVAL_FRAMES; 
+                const centerX = canvas.width / 2;
+                const centerY = canvas.height / 2;
+
+                for (let i = 0; i < MAX_RINGS; i++) {
+                    const ring = new Ring(centerX, centerY);
+                    ring.radius = (i * radiusIncrement) + RING_SPAWN_RADIUS; 
+                    ring.opacity = 1 - ((ring.radius - RING_SPAWN_RADIUS) / (ring.maxRadius - RING_SPAWN_RADIUS));
+                    
+                    if (ring.opacity > 0) {
+                        rings.push(ring);
+                    }
+                }
+            }
+
+            // The main animation loop
+            let frameCount = 0;
+            function animate() {
+                // Clear the canvas with a faint white layer for subtle trail/blur
+                ctx.fillStyle = 'rgba(255, 255, 255, 0.2)'; 
+                ctx.fillRect(0, 0, canvas.width, canvas.height); 
+
+                // New ring generation
+                if (frameCount % GENERATION_INTERVAL_FRAMES === 0 && rings.length < MAX_RINGS) { 
+                    const centerX = canvas.width / 2;
+                    const centerY = canvas.height / 2;
+                    rings.push(new Ring(centerX, centerY)); 
+                }
+
+                // Update and draw rings
+                for (let i = 0; i < rings.length; i++) {
+                    rings[i].update();
+                    rings[i].draw();
+
+                    // Remove rings that have reached or passed their maximum radius
+                    if (rings[i].radius >= rings[i].maxRadius || rings[i].opacity <= 0) {
+                        rings.splice(i, 1);
+                        i--;
+                    }
+                }
+                
+                frameCount++;
+                requestAnimationFrame(animate);
+            }
+            
+            // 1. Initialize the field state immediately with 30 spaced rings
+            initializePerpetualField();
+            
+            // 2. Start the perpetual animation loop immediately
+            animate();
+        }
+    </script>
+</body>
+</html>
