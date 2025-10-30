@@ -3,19 +3,20 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>The Awareness Framework</title>
+    <title>The Awareness Framework | Sanjeev Khanal and Raheel Budha</title>
+    
+    <!-- === FAVICON INCLUSION === -->
+    <link rel="icon" type="image/x-icon" href="favicon.ico">
+    
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
     
-    <!-- FAVICON: Using the requested relative path. Requires 'favicon.ico' in the root directory. -->
-    <link rel="icon" href="favicon.ico" type="image/x-icon">
-    
-    <!-- Structured Data (JSON-LD) for Search Engine Indexing (ISBN included) -->
+    <!-- === Structured Data (JSON-LD) for Search Engine Indexing (ISBN included) === -->
     <script type="application/ld+json">
     {
       "@context": "https://schema.org",
       "@type": "Book",
-      "name": "The Awareness Framework",
+      "name": "The Awareness Framework: A Unified Theory of Reality",
       "author": [
         {
           "@type": "Person",
@@ -29,8 +30,8 @@
       "isbn": "9789937192835",
       "bookEdition": "1st Edition",
       "bookFormat": "Paperback",
-      "description": "A profound system that merges philosophy, physics, and consciousness study to redefine how you understand existence, purpose, and self-organization. This is a new way of thinking and understanding from a holistic approach.",
-      "image": "https://placehold.co/320x500/0D1137/FFC107?text=The+Awareness+Framework"
+      "description": "A profound system that merges philosophy, physics, and consciousness to redefine how you understand existence, purpose, and self-organization.",
+      "image": "book.png"
     }
     </script>
 
@@ -43,7 +44,6 @@
             --color-footer: #1C2438; /* Dark Charcoal - For footer */
             --font-heading: 'Playfair Display', serif;
             --font-body: 'Inter', sans-serif;
-            /* NEW: Universal transparency variable for all content overlays */
             --content-opacity: 0.95; 
         }
 
@@ -69,34 +69,26 @@
             pointer-events: none;
         }
         
-        /* === Semi-transparent backgrounds (95% opacity enforced by CSS variable) === */
-        
         .section-transparent-white {
-            /* Pure White (255, 255, 255) with universal opacity */
             background-color: rgba(255, 255, 255, var(--content-opacity)); 
         }
 
         .section-transparent-secondary {
-            /* Pale Blue-Gray (247, 248, 252) with universal opacity */
             background-color: rgba(247, 248, 252, var(--content-opacity)); 
         }
 
-        /* Transparent Header/Nav (Pure White with universal opacity) */
         .header-transparent {
             background-color: rgba(255, 255, 255, var(--content-opacity));
         }
 
-        /* Transparent Footer (Dark Charcoal (28, 36, 56) with universal opacity) */
         .footer-transparent-dark {
             background-color: rgba(28, 36, 56, var(--content-opacity));
         }
         
-        /* Utility for custom primary color text */
         .text-primary-custom {
             color: var(--color-primary);
         }
 
-        /* Hero section and other elements positioning */
         .hero-section {
             position: relative; 
             overflow: hidden; 
@@ -107,25 +99,24 @@
             z-index: 10; 
         }
         
-        /* *** FIXED STYLING FOR SOCIAL LINKS *** */
-        .social-link-text {
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            width: 32px; 
-            height: 32px; 
-            background-color: var(--color-primary); 
-            color: white;
-            font-weight: bold;
-            border-radius: 9999px; 
-            font-size: 0.875rem; 
-            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -2px rgba(0, 0, 0, 0.1); 
-            transition: all 0.3s ease;
+        /* Modal Overlay Styling */
+        .modal-overlay {
+            background-color: rgba(13, 17, 55, 0.9); /* Darker indigo overlay */
+            transition: opacity 0.3s ease;
         }
 
-        .social-link-text:hover {
-            background-color: #4338CA; 
-            transform: scale(1.1);
+        /* Custom scrollbar for confirmation details */
+        .confirmation-scroll {
+            max-height: 250px;
+            overflow-y: auto;
+        }
+
+        /* Input styling for quantity */
+        input[type="number"] {
+            -webkit-appearance: none;
+            -moz-appearance: textfield;
+            appearance: textfield;
+            text-align: center;
         }
     </style>
 </head>
@@ -143,7 +134,6 @@
                  <!-- Mobile Menu Button (Hamburger on Left) -->
                 <button id="mobile-menu-button" 
                     class="md:hidden p-3 rounded-full bg-accent shadow-xl hover:bg-yellow-500 transition duration-300 focus:outline-none z-50">
-                    <!-- Standard 3-line hamburger icon path -->
                     <svg class="w-6 h-6 text-primary-custom" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
                     </svg>
@@ -151,7 +141,7 @@
                 <h1 class="text-xl sm:text-2xl font-bold tracking-tight text-primary-custom">The Awareness Framework</h1>
             </div>
 
-            <!-- CENTER: Desktop Nav (Hidden on Mobile) -->
+            <!-- CENTER: Desktop Nav -->
             <nav id="nav-menu" class="hidden md:flex space-x-8 text-sm font-medium">
                 <a href="#hero" class="hover:text-gray-600 transition duration-150">Exploration</a>
                 <a href="#domains" class="hover:text-gray-600 transition duration-150">The Scope</a>
@@ -159,25 +149,27 @@
                 <a href="#contact" class="hover:text-gray-600 transition duration-150">Contact</a>
             </nav>
             
-            <!-- RIGHT SECTION: CTA Button (Visible on ALL Screens, Responsively Sized) -->
-            <div>
-                <!-- BUY NOW: Sized down for mobile (text-xs, py-1 px-3) and up for desktop (md:...) -->
-                <a href="https://grey.com.np/products/the-awareness-framework" target="_blank"
-                    class="border-2 border-[var(--color-primary)] text-[var(--color-primary)] bg-white 
-                           py-1 px-3 text-xs md:py-2 md:px-6 md:text-sm 
-                           font-bold rounded-lg transition duration-300 
-                           transform hover:scale-[1.05] hover:bg-[var(--color-primary)] hover:text-white">
+            <!-- RIGHT SECTION: Desktop CTA Button (Now calling JS function) -->
+            <div class="hidden md:block">
+                <!-- Updated button to call the new flow function -->
+                <button onclick="showModal(1)"
+                    class="border-2 border-[var(--color-primary)] text-[var(--color-primary)] bg-white py-2 px-6 text-sm font-bold rounded-lg transition duration-300 transform hover:scale-[1.05] hover:bg-[var(--color-primary)] hover:text-white">
                     Buy Now
-                </a>
+                </button>
             </div>
         </div>
 
-        <!-- Mobile Dropdown Menu: Hidden by default and hidden on MD+ (Fixes visibility issue) -->
+        <!-- Mobile Dropdown Menu: Hidden by default and hidden on MD+ -->
         <nav id="mobile-nav" class="hidden md:hidden px-6 py-2 border-t border-gray-100 header-transparent">
             <a href="#hero" class="block py-2 text-sm font-medium hover:bg-gray-50 transition duration-150">Exploration</a>
             <a href="#domains" class="block py-2 text-sm font-medium hover:bg-gray-50 transition duration-150">The Scope</a>
             <a href="#authors" class="block py-2 text-sm font-medium hover:bg-gray-50 transition duration-150">Authors</a>
             <a href="#contact" class="block py-2 text-sm font-medium hover:bg-gray-50 transition duration-150">Contact</a>
+            <!-- Mobile Buy Now Button -->
+            <!-- Updated button to call the new flow function -->
+            <button onclick="showModal(1)" class="w-full mt-2 py-2 text-sm font-bold rounded-lg bg-[var(--color-primary)] text-white hover:bg-indigo-700 transition duration-150">
+                Buy Now
+            </button>
         </nav>
     </header>
 
@@ -194,31 +186,25 @@
                 We invite you to explore reality through a new lens, where <strong>the observer is</strong> not the by-product of existence but rather the fundamental fabric upon which reality unfolds. We offer this not as a doctrine, but as a new perspective where everything seems connected and self-sustaining.
             </p>
 
-            <!-- BOOK COVER: Now using a robust DIV container for reliable placeholder functionality -->
+            <!-- BOOK COVER (Centered) -->
             <div class="flex flex-col items-center justify-center">
-                <a href="https://grey.com.np/products/the-awareness-framework" target="_blank"
-                   class="inline-block transform hover:scale-[1.03] transition duration-300">
-                    
-                    <!-- ROBUST PLACEHOLDER CONTAINER -->
-                    <div id="book-cover-container" 
-                         class="w-64 md:w-80 h-[400px] md:h-[500px] shadow-2xl rounded-lg bg-[var(--color-primary)] text-white flex items-center justify-center relative overflow-hidden"
-                         title="Book cover placeholder">
-                        
-                        <!-- The actual image is placed on top -->
-                        <img id="book-cover-img"
-                            src="book.png" 
-                            alt="The Awareness Framework book.png cover image"
-                            class="w-full h-full object-cover absolute top-0 left-0"
-                            style="opacity: 1;"
-                        >
-                        
-                        <!-- Placeholder Text (Initially Hidden) -->
-                        <span id="placeholder-text" class="text-xl font-heading p-4 text-center absolute z-10 hidden">
-                            Book Cover Not Found<br><small class="block text-sm mt-2 font-body italic opacity-75">Please add 'book.png' to the root folder.</small>
-                        </span>
-                    </div>
-                    <!-- END ROBUST PLACEHOLDER CONTAINER -->
-                </a>
+                <!-- Book Cover: Image now only acts as a visual element -->
+                <img src="book.png" alt="Book cover of The Awareness Framework"
+                    class="w-64 md:w-80 h-auto shadow-2xl rounded-lg transform hover:scale-[1.03] transition duration-300"
+                    onerror="this.onerror=null; this.src='https://placehold.co/320x500/cccccc/333333?text=Book+Cover';"
+                >
+                
+                <!-- Explicit Buy Now Button below image -->
+                 <!-- Updated button to call the new flow function -->
+                 <button onclick="showModal(1)"
+                    class="mt-8 bg-[var(--color-primary)] text-white py-3 px-8 text-lg font-bold rounded-lg shadow-xl hover:bg-indigo-700 transition duration-300 transform hover:translate-y-[-2px]">
+                    Order Your Copy Now
+                </button>
+
+                <!-- Order Message Area (for feedback after confirmation) -->
+                <div id="order-message-area" class="mt-6 w-full max-w-xs md:max-w-md min-h-[40px] flex items-center justify-center">
+                    <!-- Success/Error messages appear here -->
+                </div>
             </div>
         </div>
     </section>
@@ -321,12 +307,11 @@
             </h3>
 
             <div class="grid grid-cols-1 md:grid-cols-2 gap-12 md:gap-20">
-                <!-- Author 1: Sanjeev Khanal (PLACEHOLDER) -->
+                <!-- Author 1: Sanjeev Khanal -->
                 <div class="flex flex-col items-center text-center">
-                    <!-- Placeholder for Sanjeev Khanal: Uses styled placehold.co URL with initials -->
-                    <img src="https://placehold.co/150x150/0D1137/FFFFFF?text=SK" 
-                        alt="Sanjeev Khanal initials placeholder"
+                    <img src="sanjeev.png" alt="Sanjeev Khanal Headshot"
                         class="w-36 h-36 rounded-full object-cover border-4 border-accent shadow-md mb-6"
+                        onerror="this.onerror=null; this.src='https://placehold.co/150x150/EEEEEE/333333?text=Sanjeev';"
                     >
                     <h4 class="text-2xl font-bold mb-2">Sanjeev Khanal</h4>
                     <p class="text-sm italic text-gray-500 mb-4">Mind Drawn to Vastness (Exploration)</p>
@@ -334,35 +319,28 @@
                     <p class="text-gray-600 mb-4 text-justify">
                         A mind drawn to vastness: to take the smallest spark of thought and project it toward infinity. Sanjeev sees patterns where others see parts, weaving intuition with quiet reasoning. To him, awareness is a living field, one that breathes through everything that exists. His exploration continues as an open inquiry into how observation shapes the unfolding of experience.
                     </p>
-                    <!-- Social Links for Sanjeev (Final: Solid circular buttons with generic links) -->
-                    <div class="flex space-x-4">
-                        <!-- Link 'f' (Facebook) -->
-                        <a href="https://facebook.com" target="_blank" rel="noopener noreferrer" 
-                            class="social-link-text"
-                            aria-label="Find Sanjeev on Facebook">
-                            f
+                    <!-- Social Icons for Sanjeev -->
+                    <div class="flex space-x-5 text-primary-custom">
+                        <!-- Facebook Icon (Standard Path) -->
+                        <a href="[Sanjeev's Facebook]" target="_blank" class="hover:text-accent transition duration-150">
+                            <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24"><path d="M22 12c0-5.52-4.48-10-10-10S2 6.48 2 12c0 4.84 3.44 8.87 8 9.8V15H7v-3h3V9.5C10 6.47 11.53 4.7 15.56 4.7c1.78 0 3.3.32 3.3.32v3.3h-1.68c-1.54 0-2.02.96-2.02 1.96V12h3.6l-.58 3h-3.02v6.8c4.56-.93 8-4.84 8-9.8z"/></svg>
                         </a>
-                        <!-- Link 'ln' (LinkedIn) -->
-                        <a href="https://linkedin.com" target="_blank" rel="noopener noreferrer" 
-                            class="social-link-text"
-                            aria-label="Connect with Sanjeev on LinkedIn">
-                            ln
+                        <!-- LinkedIn Icon (Standard Path) -->
+                        <a href="[Sanjeev's LinkedIn]" target="_blank" class="hover:text-accent transition duration-150">
+                            <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24"><path d="M19 3a2 2 0 012 2v14a2 2 0 01-2 2H5a2 2 0 01-2-2V5a2 2 0 012-2h14zM8 12H5V9h3v3zM6.5 7.5A1.5 1.5 0 005 9.01v.01A1.5 1.5 0 006.5 10.5h.01A1.5 1.5 0 008 9.01v-.01A1.5 1.5 0 006.5 7.5zm11 10.5h-3V14c0-1.24-.54-2-1.2-2.75-.66-.74-1.52-1.25-2.5-1.25s-1.84.51-2.5 1.25c-.66.75-1.2 1.51-1.2 2.75v4H8V9h2.5l.5 1.5h.01a3.6 3.6 0 013-1.5c2.4 0 4.5 1.8 4.5 4.75V18z"/></svg>
                         </a>
-                        <!-- Link 'x' (X/Twitter) -->
-                        <a href="https://x.com" target="_blank" rel="noopener noreferrer" 
-                            class="social-link-text"
-                            aria-label="Follow Sanjeev on X">
-                            x
+                        <!-- X/Twitter Icon (Updated to modern X logo shape, clean path) -->
+                        <a href="[Sanjeev's X/Twitter]" target="_blank" class="hover:text-accent transition duration-150">
+                            <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.229-8.26L1 2.25h7.828l3.642 5.022L18.244 2.25zM17.29 19.458l1.764.927.842-.927-2.606-2.72L13.116 8.4h-.008L4.35 19.458l1.764.928.842-.927 2.606-2.72L14.884 8.4h.008l4.56 5.958L17.29 19.458z"/></svg>
                         </a>
                     </div>
                 </div>
 
-                <!-- Author 2: Raheel Budha (PLACEHOLDER) -->
+                <!-- Author 2: Raheel Budha -->
                 <div class="flex flex-col items-center text-center">
-                    <!-- Placeholder for Raheel Budha: Uses styled placehold.co URL with initials -->
-                    <img src="https://placehold.co/150x150/0D1137/FFFFFF?text=RB" 
-                        alt="Raheel Budha initials placeholder"
+                    <img src="raheel.png" alt="Raheel Budha Headshot"
                         class="w-36 h-36 rounded-full object-cover border-4 border-accent shadow-md mb-6"
+                        onerror="this.onerror=null; this.src='https://placehold.co/150x150/EEEEEE/333333?text=Raheel';"
                     >
                     <h4 class="text-2xl font-bold mb-2">Raheel Budha</h4>
                     <p class="text-sm italic text-gray-500 mb-4">Mind Tuned to Clarity (Precision)</p>
@@ -370,25 +348,19 @@
                     <p class="text-gray-600 mb-4 text-justify">
                         A mind tuned to clarity: to slow down within complexity and reveal the delicate order hidden inside. Raheel's attention moves inward, tracing the subtle lines that connect perception, thought, and meaning. He seeks coherence through stillness, bringing definition where there is depth and light where there is density. For him, awareness is precision, the art of seeing what holds the world together from within.
                     </p>
-                    <!-- Social Links for Raheel (Final: Solid circular buttons with generic links) -->
-                    <div class="flex space-x-4">
-                        <!-- Link 'f' (Facebook) -->
-                        <a href="https://facebook.com" target="_blank" rel="noopener noreferrer" 
-                            class="social-link-text"
-                            aria-label="Find Raheel on Facebook">
-                            f
+                    <!-- Social Icons for Raheel -->
+                    <div class="flex space-x-5 text-primary-custom">
+                         <!-- Facebook Icon (Standard Path) -->
+                        <a href="[Raheel's Facebook]" target="_blank" class="hover:text-accent transition duration-150">
+                            <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24"><path d="M22 12c0-5.52-4.48-10-10-10S2 6.48 2 12c0 4.84 3.44 8.87 8 9.8V15H7v-3h3V9.5C10 6.47 11.53 4.7 15.56 4.7c1.78 0 3.3.32 3.3.32v3.3h-1.68c-1.54 0-2.02.96-2.02 1.96V12h3.6l-.58 3h-3.02v6.8c4.56-.93 8-4.84 8-9.8z"/></svg>
                         </a>
-                        <!-- Link 'ln' (LinkedIn) -->
-                        <a href="https://linkedin.com" target="_blank" rel="noopener noreferrer" 
-                            class="social-link-text"
-                            aria-label="Connect with Raheel on LinkedIn">
-                            ln
+                        <!-- LinkedIn Icon (Standard Path) -->
+                        <a href="[Raheel's LinkedIn]" target="_blank" class="hover:text-accent transition duration-150">
+                            <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24"><path d="M19 3a2 2 0 012 2v14a2 2 0 01-2 2H5a2 2 0 01-2-2V5a2 2 0 012-2h14zM8 12H5V9h3v3zM6.5 7.5A1.5 1.5 0 005 9.01v.01A1.5 1.5 0 006.5 10.5h.01A1.5 1.5 0 008 9.01v-.01A1.5 1.5 0 006.5 7.5zm11 10.5h-3V14c0-1.24-.54-2-1.2-2.75-.66-.74-1.52-1.25-2.5-1.25s-1.84.51-2.5 1.25c-.66.75-1.2 1.51-1.2 2.75v4H8V9h2.5l.5 1.5h.01a3.6 3.6 0 013-1.5c2.4 0 4.5 1.8 4.5 4.75V18z"/></svg>
                         </a>
-                        <!-- Link 'x' (X/Twitter) -->
-                        <a href="https://x.com" target="_blank" rel="noopener noreferrer" 
-                            class="social-link-text"
-                            aria-label="Follow Raheel on X">
-                            x
+                        <!-- X/Twitter Icon (Updated to modern X logo shape, clean path) -->
+                        <a href="[Raheel's X/Twitter]" target="_blank" class="hover:text-accent transition duration-150">
+                            <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.229-8.26L1 2.25h7.828l3.642 5.022L18.244 2.25zM17.29 19.458l1.764.927.842-.927-2.606-2.72L13.116 8.4h-.008L4.35 19.458l1.764.928.842-.927 2.606-2.72L14.884 8.4h.008l4.56 5.958L17.29 19.458z"/></svg>
                         </a>
                     </div>
                 </div>
@@ -441,80 +413,300 @@
         </div>
     </footer>
 
-    <!-- === JAVASCRIPT: FUNCTIONALITY & CANVAS ANIMATION & IMAGE FALLBACK === -->
+    <!-- === ORDER CONFIRMATION MODAL (Multi-Step Flow) === -->
+    <!-- The structure now hosts two steps dynamically -->
+    <div id="order-modal" class="fixed inset-0 z-[100] hidden items-center justify-center modal-overlay" onclick="closeModal()">
+        
+        <!-- Modal Content Container -->
+        <div id="modal-content" class="bg-white rounded-xl shadow-2xl max-w-lg w-full p-6 m-4 transform transition-all duration-300 ease-out scale-100" onclick="event.stopPropagation()">
+            <!-- Dynamic content for Step 1 or Step 2 injected here by JS -->
+        </div>
+    </div>
+
+    <!-- Custom Dialog/Message Box for success/error messages (replaces alert()) -->
+    <div id="messageBox" class="fixed top-4 right-4 z-[101] hidden p-4 rounded-lg shadow-xl text-white font-semibold transform transition-all duration-300 translate-x-full" role="alert">
+        <span id="messageText"></span>
+    </div>
+
+
+    <!-- === JAVASCRIPT: FUNCTIONALITY & CANVAS ANIMATION === -->
     <script>
+        // --- 1. GLOBAL CONSTANTS & ELEMENTS ---
+        const BOOK_TITLE = "The Awareness Framework (Paperback)";
+        const BOOK_PRICE = 25.00; // Updated to 25.00 as a cleaner placeholder
+        // NEW WHATSAPP ORDER NUMBER: +977-9705005200 (using digits only for wa.me link)
+        const WA_RECIPIENT_NUMBER = "9779705005200"; 
+
+        const modal = document.getElementById('order-modal');
+        const modalContent = document.getElementById('modal-content');
+        const messageArea = document.getElementById('order-message-area'); // For messages on the main page
+        const messageBox = document.getElementById('messageBox'); // For success/error toasts
+        const messageText = document.getElementById('messageText');
+
+        // Global State for multi-step flow
+        let orderDetails = {
+            name: '',
+            phoneCode: '+977', // Default to Nepal
+            phoneNumber: '',
+            country: 'Nepal',
+            state: '',
+            address: '',
+            copies: 1,
+        };
+        let currentStep = 0; // 0: Closed, 1: Details Entry, 2: Confirmation
         
-        // --- 1. MOBILE MENU TOGGLE LOGIC ---
-        const mobileMenuButton = document.getElementById('mobile-menu-button');
-        const mobileNav = document.getElementById('mobile-nav');
-
-        if (mobileMenuButton && mobileNav) {
-            mobileMenuButton.addEventListener('click', () => {
-                mobileNav.classList.toggle('hidden');
-            });
-
-            mobileNav.querySelectorAll('a').forEach(link => {
-                link.addEventListener('click', () => {
-                    mobileNav.classList.add('hidden');
-                });
-            });
+        // --- 2. UTILITY FUNCTIONS ---
+        
+        /** Shows a temporary success or error message (replaces alert()) */
+        function showToast(message, type = 'error') {
+            messageText.textContent = message;
+            if (type === 'success') {
+                messageBox.className = 'fixed top-4 right-4 z-[101] p-4 rounded-lg shadow-xl text-white bg-green-500 font-semibold transform transition-all duration-300 translate-x-0';
+            } else {
+                messageBox.className = 'fixed top-4 right-4 z-[101] p-4 rounded-lg shadow-xl text-white bg-red-500 font-semibold transform transition-all duration-300 translate-x-0';
+            }
+            messageBox.style.display = 'block';
+            
+            // Hide after 3 seconds
+            setTimeout(() => {
+                messageBox.className = 'fixed top-4 right-4 z-[101] p-4 rounded-lg shadow-xl text-white font-semibold transform transition-all duration-300 translate-x-full';
+            }, 3000);
+            // Hide element fully after transition
+            setTimeout(() => {
+                messageBox.style.display = 'none';
+            }, 3500);
         }
-        
-        // --- 2. ROBUST IMAGE FALLBACK HANDLER (Avoids broken icon) ---
-        function handleBookImageLoad() {
-            const img = document.getElementById('book-cover-img');
-            const placeholderText = document.getElementById('placeholder-text');
 
-            if (!img || !placeholderText) {
-                console.error("Image or placeholder elements not found.");
+        /** Closes the modal and resets the step */
+        function closeModal() {
+            modal.classList.add('hidden');
+            modal.classList.remove('flex');
+            currentStep = 0;
+        }
+
+        /** Displays the modal and renders content for the specified step */
+        function showModal(step) {
+            currentStep = step;
+            modal.classList.remove('hidden');
+            modal.classList.add('flex');
+            
+            if (step === 1) {
+                renderStep1();
+            } else if (step === 2) {
+                renderStep2();
+            }
+            
+            // Clear main page message area when modal opens
+            messageArea.innerHTML = '';
+        }
+
+
+        // --- 3. STEP 1: DETAILS ENTRY ---
+
+        function renderStep1() {
+            modalContent.innerHTML = `
+                <div class="p-4 sm:p-8">
+                    <h2 class="text-2xl font-bold text-primary-custom mb-2 border-b pb-2">1. Shipping Details</h2>
+                    <p class="text-sm text-gray-500 mb-6">Enter your address and contact information for the order.</p>
+                    
+                    <form id="detailsForm" onsubmit="event.preventDefault(); proceedToConfirm();">
+                        <!-- Name -->
+                        <div class="mb-4">
+                            <label for="name" class="block text-sm font-medium text-gray-700 mb-1">Full Name</label>
+                            <input type="text" id="name" value="${orderDetails.name}" required
+                                class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-accent focus:border-accent transition duration-150" placeholder="John Doe">
+                        </div>
+
+                        <!-- Phone Number -->
+                        <div class="mb-4">
+                            <label for="phoneNumber" class="block text-sm font-medium text-gray-700 mb-1">Phone Number (Required for WA Order)</label>
+                            <div class="flex gap-2">
+                                <select id="phoneCode" class="px-3 py-2 border border-gray-300 rounded-lg focus:ring-accent focus:border-accent">
+                                    <option value="+977" ${orderDetails.phoneCode === '+977' ? 'selected' : ''}>+977 (NPL)</option>
+                                    <option value="+91" ${orderDetails.phoneCode === '+91' ? 'selected' : ''}>+91 (IND)</option>
+                                    <option value="+1" ${orderDetails.phoneCode === '+1' ? 'selected' : ''}>+1 (USA/CAN)</option>
+                                    <option value="+44" ${orderDetails.phoneCode === '+44' ? 'selected' : ''}>+44 (UK)</option>
+                                </select>
+                                <input type="tel" id="phoneNumber" value="${orderDetails.phoneNumber}" required
+                                    class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-accent focus:border-accent transition duration-150" placeholder="9812345678">
+                            </div>
+                        </div>
+
+                        <!-- Country and State -->
+                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-4">
+                            <div>
+                                <label for="country" class="block text-sm font-medium text-gray-700 mb-1">Country</label>
+                                <select id="country" class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-accent focus:border-accent">
+                                    <option value="Nepal" ${orderDetails.country === 'Nepal' ? 'selected' : ''}>Nepal</option>
+                                    <option value="India" ${orderDetails.country === 'India' ? 'selected' : ''}>India</option>
+                                    <option value="Other" ${orderDetails.country === 'Other' ? 'selected' : ''}>Other</option>
+                                </select>
+                            </div>
+                            <div>
+                                <label for="state" class="block text-sm font-medium text-gray-700 mb-1">State/Province</label>
+                                <input type="text" id="state" value="${orderDetails.state}" required
+                                    class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-accent focus:border-accent transition duration-150" placeholder="e.g., Bagmati, Kathmandu">
+                            </div>
+                        </div>
+
+                        <!-- Shipping Address -->
+                        <div class="mb-6">
+                            <label for="address" class="block text-sm font-medium text-gray-700 mb-1">Full Shipping Address</label>
+                            <textarea id="address" rows="3" required
+                                class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-accent focus:border-accent transition duration-150" 
+                                placeholder="Street Address, City, Zip Code / Area">${orderDetails.address}</textarea>
+                        </div>
+                        
+                        <!-- Buttons -->
+                        <div class="flex justify-end gap-3">
+                            <button type="button" onclick="closeModal()" class="px-4 py-2 text-gray-600 border border-gray-300 rounded-lg hover:bg-gray-100 transition duration-150">
+                                Cancel
+                            </button>
+                            <button type="submit" class="px-6 py-2 bg-[var(--color-primary)] text-white font-semibold rounded-lg shadow-md hover:bg-indigo-700 transition duration-150">
+                                Proceed to Confirm &rarr;
+                            </button>
+                        </div>
+                    </form>
+                </div>
+            `;
+        }
+
+        /** Collects data from Step 1 form, validates it, and moves to Step 2 */
+        function proceedToConfirm() {
+            const name = document.getElementById('name').value.trim();
+            const phoneCode = document.getElementById('phoneCode').value.trim();
+            const phoneNumber = document.getElementById('phoneNumber').value.trim();
+            const country = document.getElementById('country').value.trim();
+            const state = document.getElementById('state').value.trim();
+            const address = document.getElementById('address').value.trim();
+
+            // Simple validation
+            if (!name || !phoneNumber || !country || !state || !address) {
+                showToast("Please fill out all necessary details.", 'error');
+                return;
+            }
+            
+            // Basic phone number length validation (adjust as needed for specific markets)
+            if (phoneNumber.length < 7 || phoneNumber.length > 15) {
+                showToast("Please check the phone number length.", 'error');
                 return;
             }
 
-            // Event listener to fire when the image fails to load (e.g., file not found, wrong path)
-            img.addEventListener('error', function() {
-                console.error("Book image failed to load. Showing elegant CSS placeholder.");
-                // 1. Hide the failed image element completely (using visibility/opacity for smooth effect)
-                img.style.opacity = '0';
-                img.style.visibility = 'hidden';
-                // 2. Show the instructional placeholder text which is centered in the container
-                placeholderText.classList.remove('hidden');
-            });
+            // Update global state, retaining the last selected copies count
+            orderDetails = { name, phoneCode, phoneNumber, country, state, address, copies: orderDetails.copies };
             
-            // Note: No 'load' handler is strictly necessary since the image is visible by default (opacity: 1)
+            // Move to step 2
+            showModal(2);
         }
         
-        // Call the image handler after the window has loaded all elements
-        window.addEventListener('load', handleBookImageLoad);
+        // --- 4. STEP 2: CONFIRMATION & QUANTITY ---
 
+        function renderStep2() {
+            const { name, phoneCode, phoneNumber, country, state, address, copies } = orderDetails;
+            
+            modalContent.innerHTML = `
+                <div class="p-4 sm:p-8">
+                    <h2 class="text-2xl font-bold text-primary-custom mb-2 border-b pb-2">2. Confirm Order & Quantity</h2>
+                    <p class="text-sm text-gray-500 mb-6">Review your details and select the number of copies.</p>
+                    
+                    <!-- Confirmation Details Box -->
+                    <div class="bg-gray-50 p-4 rounded-lg mb-6 confirmation-scroll border border-gray-200">
+                        <h3 class="font-semibold text-lg text-gray-700 mb-3">Shipping Information Summary:</h3>
+                        <div class="space-y-2 text-sm text-gray-600">
+                            <p><strong>Recipient:</strong> ${name}</p>
+                            <p><strong>Phone:</strong> <span class="text-green-600 font-medium">${phoneCode}${phoneNumber}</span> (For WhatsApp)</p>
+                            <p><strong>Location:</strong> ${address}, ${state}, ${country}</p>
+                        </div>
 
-        // --- 3. AWARENESS WAVE CANVAS ANIMATION (Perpetual Field) ---
+                        <h3 class="font-semibold text-lg text-gray-700 mt-4 mb-3">Product:</h3>
+                        <p class="text-sm text-gray-600"><strong>${BOOK_TITLE}</strong></p>
+                        <p class="text-sm text-gray-600">Estimated Price: $${BOOK_PRICE.toFixed(2)} per copy</p>
+                    </div>
+
+                    <!-- Number of Copies Selector -->
+                    <div class="mb-6 flex items-center justify-between p-3 bg-white border border-[var(--color-primary)] rounded-lg shadow-sm">
+                        <label for="copies" class="block text-base font-semibold text-gray-700">Number of Copies:</label>
+                        <select id="copies" onchange="orderDetails.copies = parseInt(this.value);" 
+                            class="px-4 py-2 border border-gray-300 rounded-lg focus:ring-accent focus:border-accent text-lg font-bold">
+                            <!-- Generate options for 1 to 10 copies -->
+                            ${[...Array(10).keys()].map(i => i + 1).map(num => 
+                                `<option value="${num}" ${copies === num ? 'selected' : ''}>${num}</option>`
+                            ).join('')}
+                        </select>
+                    </div>
+
+                    <!-- Buttons -->
+                    <div class="flex justify-between gap-3">
+                        <button type="button" onclick="showModal(1)" class="px-4 py-2 text-gray-600 bg-gray-100 rounded-lg hover:bg-gray-200 transition duration-150">
+                            &larr; Edit Details
+                        </button>
+                        <button type="button" onclick="placeOrderViaWhatsapp()" 
+                                class="flex items-center gap-2 px-6 py-3 bg-green-500 text-white font-bold rounded-lg shadow-lg hover:bg-green-600 transition duration-150 transform hover:scale-[1.01]">
+                            <!-- WhatsApp Icon (inline SVG) -->
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="currentColor"><path d="M12.04 2c-5.46 0-9.91 4.45-9.91 9.91 0 1.75.46 3.45 1.34 4.97l-1.4 5.15 5.23-1.37c1.45.79 3.08 1.21 4.74 1.21 5.46 0 9.91-4.45 9.91-9.91s-4.45-9.91-9.91-9.91zm.04 18.02c-1.42 0-2.8-.39-3.99-1.14l-.28-.17-2.92.77.78-2.85-.19-.3c-.83-1.35-1.27-2.92-1.27-4.52 0-4.63 3.77-8.4 8.4-8.4s8.4 3.77 8.4 8.4-3.77 8.4-8.4 8.4zm4.1-6.19c-.23-.12-.87-.44-.99-.48s-.25-.06-.35.06-.4.48-.49.58-.17.11-.31.06c-.14-.06-.59-.22-1.12-.69-.41-.36-.69-.8-1.01-1.34-.31-.54-.03-.5-.07-.54s-.35-.04-.48-.04-.25-.01-.35.05c-.1.06-.17.18-.26.28-.08.1-.17.19-.25.28-.08.1-.17.07-.31 0s-.6-.22-1.14-.68c-.54-.45-.9-.87-1.27-1.44-.37-.56-.1-.58-.28-.58h-.06c-.18 0-.48.06-.63.22-.15.15-.58.55-.58 1.33s.6 1.54.68 1.65.25.12.44.33c.19.2.39.48.59.69.2.2.39.33.56.44.86.58 1.75.87 2.65.87 2.11 0 4.01-1.57 4.74-2.83.23-.39.23-.74.16-.87-.06-.13-.23-.2-.48-.33z"/></svg>
+                            Place Order via WhatsApp
+                        </button>
+                    </div>
+                </div>
+            `;
+        }
+        
+        /** Generates the pre-filled WhatsApp message URL and opens it */
+        function placeOrderViaWhatsapp() {
+            const { name, phoneCode, phoneNumber, country, state, address, copies } = orderDetails;
+            
+            // 1. Construct the message content
+            const messageTemplate = `
+*NEW BOOK ORDER - The Awareness Framework*
+
+Copies: ${copies}
+Estimated Total: $${(copies * BOOK_PRICE).toFixed(2)}
+
+--- CUSTOMER DETAILS ---
+Name: ${name}
+Phone: ${phoneCode}${phoneNumber}
+Shipping Address: ${address}
+Location: ${state}, ${country}
+
+_Please confirm final price and shipping costs. Thank you!_
+            `.trim();
+            
+            // 2. Encode the message for the URL
+            const encodedMessage = encodeURIComponent(messageTemplate);
+            
+            // 3. Construct the WhatsApp API URL
+            const whatsappUrl = `https://wa.me/${WA_RECIPIENT_NUMBER}?text=${encodedMessage}`;
+            
+            // 4. Provide feedback and close the modal
+            closeModal();
+            showToast(`Opening WhatsApp chat. Please confirm the pre-filled message.`, 'success');
+            
+            // 5. Open the WhatsApp link
+            window.open(whatsappUrl, '_blank');
+        }
+
+        
+        // --- 5. CANVAS ANIMATION LOGIC (Retained from original file) ---
         const canvas = document.getElementById('awarenessCanvas');
         
-        if (!canvas) {
-            console.error("Canvas element not found.");
-        } else {
+        if (canvas) {
             const ctx = canvas.getContext('2d');
-            
             let rings = [];
             
-            // Configuration for Continuous Wave Effect
             const MAX_RINGS = 30; 
-            const RING_RGB = '13, 17, 55'; // Deep Indigo RGB values
+            const RING_RGB = '13, 17, 55'; 
             const VISIBILITY_FACTOR = 0.20; 
-            const GENERATION_INTERVAL_FRAMES = 100; // Interval for spacing
+            const GENERATION_INTERVAL_FRAMES = 100; 
             const RING_SPAWN_RADIUS = 5; 
             const RING_SPEED = 0.2; 
 
-            // Function to resize the canvas to the window's full viewport
             function resizeCanvas() {
                 canvas.width = window.innerWidth;
                 canvas.height = window.innerHeight;
             }
-
             resizeCanvas();
             window.addEventListener('resize', resizeCanvas); 
 
-            // Ring constructor
             function Ring(x, y) {
                 this.x = x;
                 this.y = y;
@@ -533,7 +725,6 @@
                 const currentOpacity = this.opacity * VISIBILITY_FACTOR; 
                 const shadowOpacity = currentOpacity * 0.4; 
 
-                // Apply Subtle Shadow/Glow effect for clarity
                 ctx.shadowColor = 'rgba(' + RING_RGB + ', ' + shadowOpacity + ')';
                 ctx.shadowBlur = 12; 
                 ctx.shadowOffsetX = 0;
@@ -546,12 +737,10 @@
                 ctx.lineWidth = 10; 
                 ctx.stroke();
 
-                // Reset shadow after drawing the ring to avoid affecting other elements
                 ctx.shadowBlur = 0; 
                 ctx.shadowColor = 'transparent'; 
             };
             
-            // Initialize rings to simulate an already established wave
             function initializePerpetualField() {
                 const radiusIncrement = RING_SPEED * GENERATION_INTERVAL_FRAMES; 
                 const centerX = canvas.width / 2;
@@ -568,26 +757,22 @@
                 }
             }
 
-            // The main animation loop
             let frameCount = 0;
             function animate() {
-                // Clear the canvas with a faint white layer for subtle trail/blur
+                // Clear canvas with a slight transparency for the trail effect
                 ctx.fillStyle = 'rgba(255, 255, 255, 0.2)'; 
                 ctx.fillRect(0, 0, canvas.width, canvas.height); 
 
-                // New ring generation
                 if (frameCount % GENERATION_INTERVAL_FRAMES === 0 && rings.length < MAX_RINGS) { 
                     const centerX = canvas.width / 2;
                     const centerY = canvas.height / 2;
                     rings.push(new Ring(centerX, centerY)); 
                 }
 
-                // Update and draw rings
                 for (let i = 0; i < rings.length; i++) {
                     rings[i].update();
                     rings[i].draw();
 
-                    // Remove rings that have reached or passed their maximum radius
                     if (rings[i].radius >= rings[i].maxRadius || rings[i].opacity <= 0) {
                         rings.splice(i, 1);
                         i--;
@@ -598,12 +783,35 @@
                 requestAnimationFrame(animate);
             }
             
-            // 1. Initialize the field state immediately with 30 spaced rings
             initializePerpetualField();
-            
-            // 2. Start the perpetual animation loop immediately
             animate();
         }
+        
+        // --- 6. INITIALIZATION AND EVENT LISTENERS ---
+        
+        // Listen for mobile menu toggle
+        const mobileMenuButton = document.getElementById('mobile-menu-button');
+        const mobileNav = document.getElementById('mobile-nav');
+        
+        if (mobileMenuButton && mobileNav) {
+            mobileMenuButton.addEventListener('click', () => {
+                mobileNav.classList.toggle('hidden');
+            });
+            // Close menu when a link is clicked
+            mobileNav.querySelectorAll('a').forEach(link => {
+                link.addEventListener('click', () => {
+                    mobileNav.classList.add('hidden');
+                });
+            });
+        }
+        
+        // Event listener to close modal when clicking outside (on the overlay)
+        modal.addEventListener('click', (e) => {
+            if (e.target === modal) {
+                closeModal();
+            }
+        });
+
     </script>
 </body>
 </html>
