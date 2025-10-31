@@ -3,45 +3,45 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>The Awareness Framework</title>
-    
-    <!-- === FAVICON INCLUSION === -->
-    <link rel="icon" type="image/x-icon" href="favicon.ico">
-    
+    <title>The Awareness Framework | A Unified Theory of Reality</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
     
-    <!-- === Structured Data (JSON-LD) for Search Engine Indexing (ISBN included) === -->
+    <!-- FAVICON LINK: Using requested favicon.ico path -->
+    <link rel="icon" href="favicon.ico" type="image/x-icon">
+
+    <!-- Schema.org JSON-LD for Google Product/Book Snippet (using ISBN) -->
     <script type="application/ld+json">
     {
       "@context": "https://schema.org",
       "@type": "Book",
-      "name": "The Awareness Framework",
+      "name": "The Awareness Framework: A Unified Theory of Reality",
       "author": [
-        {
-          "@type": "Person",
-          "name": "Sanjeev Khanal"
-        },
-        {
-          "@type": "Person",
-          "name": "Raheel Budha"
-        }
+        { "@type": "Person", "name": "Sanjeev Khanal" },
+        { "@type": "Person", "name": "Raheel Budha" }
       ],
       "isbn": "9789937192835",
       "bookEdition": "1st Edition",
-      "bookFormat": "Paperback",
-      "description": "A profound system that merges philosophy, quantum physics, consciousness study and system-thinking to redefine how you understand existence, purpose, and self-organization. It provides you with a new perspective to see the life, existence and everything in-between.",
-      "image": "book.png"
+      "description": "The Awareness Framework explores consciousness, perception, and the fundamental structure of reality, guiding readers through balancing inner stillness with external complexity to achieve profound clarity.",
+      "image": "https://placehold.co/320x500/0D1137/FFC107?text=The+Awareness+Framework",
+      "url": "https://theawarenessframework.github.io/website/",
+      "offers": {
+        "@type": "Offer",
+        "priceCurrency": "NPR",
+        "price": "1500.00",
+        "availability": "https://schema.org/InStock",
+        "url": "https://grey.com.np/products/the-awareness-framework"
+      }
     }
     </script>
-
+    
     <style>
         /* Custom Colors & Fonts */
         :root {
-            --color-primary: #0D1137; /* Deep Indigo - For text and accents (now used for all CTAs) */
-            --color-secondary: #F7F8FC; /* Pale Blue-Gray - For subtle section backgrounds */
-            --color-accent: #FFC107; /* Vibrant Gold - Secondary color, now used only for highlights */
-            --color-footer: #1C2438; /* Dark Charcoal - For footer */
+            --color-primary: #0D1137; /* Deep Indigo */
+            --color-secondary: #F7F8FC; /* Pale Blue-Gray */
+            --color-accent: #FFC107; /* Vibrant Gold */
+            --color-footer: #1C2438; /* Dark Charcoal */
             --font-heading: 'Playfair Display', serif;
             --font-body: 'Inter', sans-serif;
             --content-opacity: 0.95; 
@@ -58,7 +58,7 @@
             color: var(--color-primary);
         }
 
-        /* Utility Classes for Canvas and Wave Animation */
+        /* Canvas and Transparency Utilities */
         #awarenessCanvas {
             position: fixed;
             top: 0;
@@ -73,10 +73,6 @@
             background-color: rgba(255, 255, 255, var(--content-opacity)); 
         }
 
-        .section-transparent-secondary {
-            background-color: rgba(247, 248, 252, var(--content-opacity)); 
-        }
-
         .header-transparent {
             background-color: rgba(255, 255, 255, var(--content-opacity));
         }
@@ -84,40 +80,73 @@
         .footer-transparent-dark {
             background-color: rgba(28, 36, 56, var(--content-opacity));
         }
-        
+
         .text-primary-custom {
             color: var(--color-primary);
         }
 
-        .hero-section {
-            position: relative; 
-            overflow: hidden; 
+        /* Fixed CSS for Guaranteed Circular Social Buttons */
+        .social-link-text {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            width: 32px;
+            height: 32px;
+            background-color: var(--color-primary); /* Deep Indigo Background */
+            color: white; /* White Text */
+            border-radius: 9999px; /* Force circular shape */
+            font-size: 0.875rem; /* text-sm */
+            font-weight: 600; /* font-semibold */
+            transition: background-color 0.3s;
+            text-decoration: none;
+        }
+        .social-link-text:hover {
+            background-color: #FFC107; /* Hover to Gold */
+            color: var(--color-primary);
         }
         
-        .hero-content {
+        /* Modal Styles */
+        .modal {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.75);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 1000;
+        }
+        .modal-content {
+            background-color: white;
+            padding: 2rem;
+            border-radius: 0.75rem;
+            width: 90%;
+            max-width: 448px; /* max-w-md */
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+        }
+        
+        /* Robust Image Placeholder Styling */
+        .book-cover-container {
             position: relative;
-            z-index: 10; 
-        }
-        
-        /* Modal Overlay Styling */
-        .modal-overlay {
-            background-color: rgba(13, 17, 55, 0.9); /* Darker indigo overlay */
-            transition: opacity 0.3s ease;
-        }
-
-        /* Custom scrollbar for confirmation details */
-        .confirmation-scroll {
-            max-height: 250px;
-            overflow-y: auto;
-        }
-
-        /* Input styling for quantity */
-        input[type="number"] {
-            -webkit-appearance: none;
-            -moz-appearance: textfield;
-            appearance: textfield;
+            background-color: #0D1137; /* Deep Indigo */
+            color: #FFC107; /* Gold text */
+            display: flex;
+            justify-content: center;
+            align-items: center;
             text-align: center;
+            font-family: var(--font-body);
+            font-weight: 600;
+            overflow: hidden;
         }
+        .book-placeholder-text {
+            font-size: 1.25rem;
+            line-height: 1.75rem;
+            padding: 1rem;
+            display: none; /* Hidden by default, shown on image error */
+        }
+
     </style>
 </head>
 
@@ -143,220 +172,219 @@
 
             <!-- CENTER: Desktop Nav -->
             <nav id="nav-menu" class="hidden md:flex space-x-8 text-sm font-medium">
-                <a href="#hero" class="hover:text-gray-600 transition duration-150">Exploration</a>
-                <a href="#domains" class="hover:text-gray-600 transition duration-150">The Scope</a>
+                <a href="#hero" class="hover:text-gray-600 transition duration-150 font-bold text-gray-800">Framework</a>
+                <a href="#insights" class="hover:text-gray-600 transition duration-150">Insights</a>
                 <a href="#authors" class="hover:text-gray-600 transition duration-150">Authors</a>
-                <a href="#contact" class="hover:text-gray-600 transition duration-150">Contact</a>
+                <a href="return_policy.html" class="hover:text-gray-600 transition duration-150">Policy</a>
             </nav>
             
-            <!-- RIGHT SECTION: Desktop CTA Button (Now calling JS function) -->
-            <div class="">
-                <!-- Updated button to call the new flow function -->
-                <button onclick="showModal(1)"
-                    class="border-2 border-[var(--color-primary)] text-[var(--color-primary)] bg-white py-2 px-6 text-sm font-bold rounded-lg transition duration-300 transform hover:scale-[1.05] hover:bg-[var(--color-primary)] hover:text-white">
+            <!-- RIGHT SECTION: CTA Button (Visible on ALL Screens) -->
+            <div>
+                <!-- BUY NOW: Calls openModal() on click -->
+                <button id="openModalDesktop"
+                    class="border-2 border-[var(--color-primary)] text-[var(--color-primary)] bg-white 
+                           py-1 px-3 text-xs md:py-2 md:px-6 md:text-sm 
+                           font-bold rounded-lg transition duration-300 
+                           transform hover:scale-[1.05] hover:bg-[var(--color-primary)] hover:text-white">
                     Buy Now
                 </button>
             </div>
         </div>
 
-        <!-- Mobile Dropdown Menu: Hidden by default and hidden on MD+ -->
+        <!-- Mobile Dropdown Menu: Hidden by default -->
         <nav id="mobile-nav" class="hidden md:hidden px-6 py-2 border-t border-gray-100 header-transparent">
-            <a href="#hero" class="block py-2 text-sm font-medium hover:bg-gray-50 transition duration-150">Exploration</a>
-            <a href="#domains" class="block py-2 text-sm font-medium hover:bg-gray-50 transition duration-150">The Scope</a>
-            <a href="#authors" class="block py-2 text-sm font-medium hover:bg-gray-50 transition duration-150">Authors</a>
-            <a href="#contact" class="block py-2 text-sm font-medium hover:bg-gray-50 transition duration-150">Contact</a>
+             <a href="#hero" class="block py-2 text-sm font-medium hover:bg-gray-50 transition duration-150">Framework</a>
+             <a href="#insights" class="block py-2 text-sm font-medium hover:bg-gray-50 transition duration-150">Insights</a>
+             <a href="#authors" class="block py-2 text-sm font-medium hover:bg-gray-50 transition duration-150">Authors</a>
+             <a href="return_policy.html" class="block py-2 text-sm font-medium hover:bg-gray-50 transition duration-150">Policy</a>
         </nav>
     </header>
 
+    
+    <!-- === 2. HERO SECTION === -->
+    <section id="hero" class="section-transparent-white pt-24 pb-16 md:pt-40 md:pb-24">
+        <div class="container mx-auto px-6 flex flex-col md:flex-row items-center justify-center md:gap-x-16 gap-y-12 max-w-7xl">
+            
+            <!-- LEFT: TEXT CONTENT -->
+            <div class="md:w-1/2 text-center md:text-left">
+                <h2 class="text-4xl sm:text-5xl md:text-6xl font-bold tracking-tight text-primary-custom mb-4 font-heading">
+                    The Awareness Framework
+                </h2>
+                <p class="text-xl sm:text-xl text-gray-700 mb-6 font-medium">
+                    Your invitation to a new perspective on reality.
+                </p>
+                
+                <p class="text-gray-600 mb-8 max-w-md mx-auto md:mx-0 text-justify">
+                    This book is an exploration of the observer, memory, and pattern recognition: the three pillars of a structured methodology needed to bridge the gap between consciousness and the architecture of reality itself.
+                </p>
+                
+                <!-- Hero CTA (Visible on desktop, calls openModal()) -->
+                <button id="openModalHero"
+                    class="bg-yellow-500 text-primary-custom py-3 px-10 text-lg font-bold rounded-lg 
+                           shadow-2xl hover:bg-yellow-500 transition duration-300 transform 
+                           hover:scale-[1.02] border-2 border-transparent hover:border-primary-custom">
+                    Unlock the Exploration
+                </button>
+            </div>
 
-    <!-- === 2. HERO SECTION (Exploration - Now clean) === -->
-    <section id="hero" class="hero-section section-transparent-white pt-16 pb-20 md:pt-24 md:pb-32 text-center">
-        <div class="hero-content max-w-5xl mx-auto px-6">
-            <!-- HEADING -->
-            <h2 class="text-4xl sm:text-5xl md:text-6xl font-bold tracking-tight mb-4">
-                The Awareness Framework
-            </h2>
-            <!-- SUBHEADING/HOOK TEXT -->
-            <p class="text-lg sm:text-xl italic font-light max-w-3xl mx-auto mb-16 text-gray-700 text-justify">
-                We invite you to explore reality through a new lens, where <strong>the observer is</strong> not the by-product of existence but rather the fundamental fabric upon which reality unfolds. We offer this not as a doctrine, but as a new perspective where everything seems connected and self-sustaining.
-            </p>
-
-            <!-- BOOK COVER (Centered) -->
-            <div class="flex flex-col items-center justify-center">
-                <!-- Book Cover: Image now only acts as a visual element -->
-                <img src="book.png" alt="Book cover of The Awareness Framework"
-                    class="w-64 md:w-80 h-auto shadow-2xl rounded-lg transform hover:scale-[1.03] transition duration-300"
-                    onerror="this.onerror=null; this.src='https://placehold.co/320x500/cccccc/333333?text=Book+Cover';"
-                >
-
-                <!-- Order Message Area (for feedback after confirmation) -->
-                <div id="order-message-area" class="mt-6 w-full max-w-xs md:max-w-md min-h-[40px] flex items-center justify-center">
-                    <!-- Success/Error messages appear here -->
+            <!-- RIGHT: BOOK COVER IMAGE (With robust placeholder) -->
+            <div class="md:w-1/2 flex justify-center md:justify-end mt-10 md:mt-0">
+                <div id="bookCoverWrapper" 
+                     class="book-cover-container w-64 md:w-80 h-[400px] md:h-[500px] shadow-2xl rounded-lg md:-translate-y-12">
+                    
+                    <!-- The image tag with the requested relative path -->
+                    <img id="bookCoverImage" 
+                         src="book.png" 
+                         alt="The Awareness Framework book.png cover image" 
+                         class="w-full h-full object-cover rounded-lg"
+                         onerror="handleImageError(this, 'bookCoverPlaceholderText')"
+                    >
+                    
+                    <!-- Placeholder text, hidden by default -->
+                    <div id="bookCoverPlaceholderText" class="book-placeholder-text absolute top-0 left-0 w-full h-full flex flex-col justify-center items-center">
+                        <span class="text-2xl font-bold">Book Cover</span>
+                        <span>File Not Found: book.png</span>
+                    </div>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- === 3. CORE BOOK INSIGHTS (Reworked Domain Cards) === -->
-    <section id="domains" class="section-transparent-secondary py-20 md:py-28">
+    <!-- === 3. CORE BOOK INSIGHTS (The Inquiry Funnel) === -->
+    <section id="insights" class="section-transparent-white py-20 md:py-32 border-t border-gray-200">
         <div class="max-w-7xl mx-auto px-6">
-            <h3 class="text-3xl sm:text-4xl font-bold text-center mb-16 tracking-tight">
-                Core Book Insights
-            </h3>
-
-            <!-- 8 Insight Cards in a Responsive Grid -->
-            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+            <h3 class="text-center text-4xl font-bold mb-16 font-heading">Core Book Insights</h3>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
                 
-                <!-- Insight 1: Observer as a Base -->
-                <div class="bg-white p-6 rounded-xl shadow-lg border-l-4 border-accent opacity-95">
-                    <h4 class="text-lg font-bold mb-2">The Observer as Base</h4>
-                    <p class="text-sm text-gray-600">
-                        The fundamental concept that the Observer is the primary foundation, defined as a non-energetic informational constant. Consciousness is considered a byproduct of the Observer's interaction with the system, establishing the core system architecture.
-                    </p>
-                </div>
-
-                <!-- Insight 2: Nature of Reality (R=OMP) -->
-                <div class="bg-white p-6 rounded-xl shadow-lg border-l-4 border-accent opacity-95">
-                    <h4 class="text-lg font-bold mb-2">Reality: R=OMP (Observer, Memory, Pattern)</h4>
-                    <p class="text-sm text-gray-600">
-                        Introducing the core equation that defines structural reality: <strong>Reality = Observer + Memory + Pattern</strong>. This principle highlights how Pattern analysis is the active step that gives rise to the perception of reality.
+                <!-- Insight Card 1: The Observer as a Base -->
+                <div class="p-6 bg-secondary rounded-xl shadow-lg hover:shadow-xl transition duration-300 border-t-4 border-accent">
+                    <h4 class="text-2xl font-bold mb-3 text-primary-custom">1. The Observer as Base</h4>
+                    <p class="text-sm text-gray-600 text-justify">
+                        The fundamental concept is that the Observer is the primary foundation; defined as a non-energetic informational constant. Reality, as we perceive, is considered a byproduct of the Observer's interaction with the memory.
                     </p>
                 </div>
                 
-                <!-- Insight 3: Causality, Time, and Space -->
-                <div class="bg-white p-6 rounded-xl shadow-lg border-l-4 border-accent opacity-95">
-                    <h4 class="text-lg font-bold mb-2">Causality, Time, and Space</h4>
-                    <p class="text-sm text-gray-600">
-                        An exploration of how the observer's internal system (Memory) creates the perception of linear time and dimensional space.
+                <!-- Insight Card 2: R = OMP -->
+                <div class="p-6 bg-secondary rounded-xl shadow-lg hover:shadow-xl transition duration-300 border-t-4 border-accent">
+                    <h4 class="text-2xl font-bold mb-3 text-primary-custom">2. R = OMP</h4>
+                    <p class="text-sm text-gray-600 text-justify">
+                        Introducing the core equation that defines structural reality: Reality = Observer + Memory + Pattern. This principle highlights how pattern recognition is the active step that gives rise to the perception of reality.
                     </p>
                 </div>
                 
-                <!-- Insight 4: Coherence and Balance -->
-                <div class="bg-white p-6 rounded-xl shadow-lg border-l-4 border-accent opacity-95">
-                    <h4 class="text-lg font-bold mb-2">Coherence and Balance</h4>
-                    <p class="text-sm text-gray-600">
-                        The essential requirement for systemic health, achieved through the dynamic equilibrium between exploration (vastness) and clarity (precision).
+                <!-- Insight Card 3: Causality and Time -->
+                <div class="p-6 bg-secondary rounded-xl shadow-lg hover:shadow-xl transition duration-300 border-t-4 border-accent">
+                    <h4 class="text-2xl font-bold mb-3 text-primary-custom">3. Causality: Time and Space</h4>
+                    <p class="text-sm text-gray-600 text-justify">
+                        Exploring the non-linear relationship between time and space. Time is explored as the measure of change in memory-stack and Space as the relation between the patterns.
                     </p>
                 </div>
                 
-                <!-- Insight 5: Alignment -->
-                <div class="bg-white p-6 rounded-xl shadow-lg border-l-4 border-accent opacity-95">
-                    <h4 class="text-lg font-bold mb-2">The Principle of Alignment</h4>
-                    <p class="text-sm text-gray-600">
-                        Defining the state of internal coherence where the system's inherent duality (Memory and Pattern) is balanced, ensuring the system is internally consistent and self-sufficient.
-                    </p>
-                </div>
-
-                <!-- Insight 6: Biology and Nature of Life -->
-                <div class="bg-white p-6 rounded-xl shadow-lg border-l-4 border-accent opacity-95">
-                    <h4 class="text-lg font-bold mb-2">Biology and Nature of Life</h4>
-                    <p class="text-sm text-gray-600">
-                        Examining life through the lens of system architecture: the minimum necessary structure required for self-sustaining coherence against entropy.
+                <!-- Insight Card 4: Duality of Nature -->
+                <div class="p-6 bg-secondary rounded-xl shadow-lg hover:shadow-xl transition duration-300 border-t-4 border-accent">
+                    <h4 class="text-2xl font-bold mb-3 text-primary-custom">4. Duality of Nature</h4>
+                    <p class="text-sm text-gray-600 text-justify">
+                        Analyzing the duality of perception: where Coherence is considered as structural strenthening whereas Entropy is the tendency toward structural decay and the delicate balance between the two seeks sustainability.
                     </p>
                 </div>
                 
-                <!-- Insight 7: Extension of Humanity -->
-                <div class="bg-white p-6 rounded-xl shadow-lg border-l-4 border-accent opacity-95">
-                    <h4 class="text-lg font-bold mb-2">Extension of Human System</h4>
-                    <p class="text-sm text-gray-600">
-                        How the Framework applies beyond the individual, influencing societal structures, technology, and collective awareness.
+                <!-- Insight Card 5: The Principle of Alignment -->
+                <div class="p-6 bg-secondary rounded-xl shadow-lg hover:shadow-xl transition duration-300 border-t-4 border-accent">
+                    <h4 class="text-2xl font-bold mb-3 text-primary-custom">5. The Principle of Alignment</h4>
+                    <p class="text-sm text-gray-600 text-justify">
+                        Defining the state where the system achieves internal consistency and self-sufficiency through coherence between its inherent duality, leading to flow and authentic expression. And, this is achieved by aligning with bigger picture.
                     </p>
                 </div>
                 
-                <!-- Insight 8: Ethics and Health -->
-                <div class="bg-white p-6 rounded-xl shadow-lg border-l-4 border-accent opacity-95">
-                    <h4 class="text-lg font-bold mb-2">Ethics through System Health</h4>
-                    <p class="text-sm text-gray-600">
-                        Establishing a new ethical framework rooted in maintaining systemic coherence, health, and minimum entropy (the opposite of disorder).
+                <!-- Insight Card 6: Biology & Nature of Life -->
+                <div class="p-6 bg-secondary rounded-xl shadow-lg hover:shadow-xl transition duration-300 border-t-4 border-accent">
+                    <h4 class="text-2xl font-bold mb-3 text-primary-custom">6. Biology and Nature of Life</h4>
+                    <p class="text-sm text-gray-600 text-justify">
+                        The structural emergence of life as an imperative to sustain information coherence. Life is defined not by chemical composition, but as the complex structure of memory: a system capable of recognizing and preserving patterns within chaos.
                     </p>
                 </div>
             </div>
         </div>
     </section>
-
-    <!-- === 4. CORE PHILOSOPHY & QUOTE === -->
-    <section class="section-transparent-white py-20 md:py-28">
+    
+    <!-- === 4. PHILOSOPHY QUOTE === -->
+    <section class="section-transparent-white py-16 md:py-24 border-t border-gray-200">
         <div class="max-w-4xl mx-auto px-6 text-center">
-            <p class="text-2xl md:text-3xl italic font-light text-gray-800 leading-relaxed border-y-2 border-gray-200 py-6">
+            <p class="text-2xl md:text-3xl font-light italic text-gray-700 leading-relaxed font-heading text-justify">
                 "The universe is not a scattered orchestra of parts but a single composition in motion: each particle, pattern, and pulse contributing to a music vast enough to include its own silence."
             </p>
-            <!-- Bolded book name -->
-            <p class="text-lg mt-8 font-medium text-gray-500">
-                — A core tenet of <strong>The Awareness Framework</strong>
-            </p>
+	    <p class="text-2xl md:text-3xl font-light italic text-gray-700 leading-relaxed font-heading text-right mt-2">
+  <strong><i>- The Awareness Framework</i></strong>
+             </p>
         </div>
     </section>
 
     <!-- === 5. MEET THE AUTHORS === -->
-    <section id="authors" class="section-transparent-secondary py-20 md:py-28">
+    <section id="authors" class="section-transparent-white py-20 md:py-32 border-t border-gray-200">
         <div class="max-w-7xl mx-auto px-6">
-            <h3 class="text-3xl sm:text-4xl font-bold text-center mb-16 tracking-tight">
-                Meet the Authors
-            </h3>
-
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-12 md:gap-20">
+            <h3 class="text-center text-4xl font-bold mb-16 font-heading">Meet the Authors</h3>
+            
+            <div class="flex flex-col lg:flex-row justify-center gap-12">
+                
                 <!-- Author 1: Sanjeev Khanal -->
-                <div class="flex flex-col items-center text-center">
-                    <img src="sanjeev.png" alt="Sanjeev Khanal Headshot"
-                        class="w-36 h-36 rounded-full object-cover border-4 border-accent shadow-md mb-6"
-                        onerror="this.onerror=null; this.src='https://placehold.co/150x150/EEEEEE/333333?text=Sanjeev';"
-                    >
-                    <h4 class="text-2xl font-bold mb-2">Sanjeev Khanal</h4>
-                    <p class="text-sm italic text-gray-500 mb-4">Mind Drawn to Vastness (Exploration)</p>
-                    <!-- Justified paragraph -->
-                    <p class="text-gray-600 mb-4 text-justify">
-                        A mind drawn to vastness: to take the smallest spark of thought and project it toward infinity. Sanjeev sees patterns where others see parts, weaving intuition with quiet reasoning. To him, awareness is a living field, one that breathes through everything that exists. His exploration continues as an open inquiry into how observation shapes the unfolding of experience.
-                    </p>
-                </div>
+                <div class="lg:w-1/3 flex flex-col items-center text-center">
+                    
+                    <!-- Image Placeholder 1 (Sanjeev Khanal) -->
+                    <div class="w-40 h-40 bg-indigo-800 rounded-full flex items-center justify-center mb-6 shadow-xl">
+                        <span class="text-6xl font-bold text-white font-heading">SK</span>
+                    </div>
 
+                    <h4 class="text-2xl font-bold mb-2">Sanjeev Khanal</h4>
+                    <p class="text-sm font-medium text-gray-500 mb-4">The Architect of Vastness</p>
+                    
+                    <p class="text-gray-700 mb-6 text-justify">
+                        A mind drawn to vastness: to take the smallest spark of thought and project it toward infinity. Sanjeev sees patterns where others see parts, expanding each question into the architecture of reality itself. His reflections wander across space, memory, and motion, weaving intuition with quiet reasoning. To him, awareness is not an idea but a living field, one that breathes through everything that exists.
+                    </p>
+                    
+                </div>
+                
                 <!-- Author 2: Raheel Budha -->
-                <div class="flex flex-col items-center text-center">
-                    <img src="raheel.png" alt="Raheel Budha Headshot"
-                        class="w-36 h-36 rounded-full object-cover border-4 border-accent shadow-md mb-6"
-                        onerror="this.onerror=null; this.src='https://placehold.co/150x150/EEEEEE/333333?text=Raheel';"
-                    >
+                <div class="lg:w-1/3 flex flex-col items-center text-center">
+                    
+                    <!-- Image Placeholder 2 (Raheel Budha) -->
+                    <div class="w-40 h-40 bg-indigo-800 rounded-full flex items-center justify-center mb-6 shadow-xl">
+                        <span class="text-6xl font-bold text-white font-heading">RB</span>
+                    </div>
+
                     <h4 class="text-2xl font-bold mb-2">Raheel Budha</h4>
-                    <p class="text-sm italic text-gray-500 mb-4">Mind Tuned to Clarity (Precision)</p>
-                    <!-- Justified paragraph -->
-                    <p class="text-gray-600 mb-4 text-justify">
+                    <p class="text-sm font-medium text-gray-500 mb-4">The Architect of Clarity</p>
+                    
+                    <p class="text-gray-700 mb-6 text-justify">
                         A mind tuned to clarity: to slow down within complexity and reveal the delicate order hidden inside. Raheel's attention moves inward, tracing the subtle lines that connect perception, thought, and meaning. He seeks coherence through stillness, bringing definition where there is depth and light where there is density. For him, awareness is precision, the art of seeing what holds the world together from within.
                     </p>
+
                 </div>
+
             </div>
-            
-            <div class="max-w-3xl mx-auto mt-16 text-center text-lg text-gray-600">
-                <!-- Quote confirmed as clean -->
-                <p>
-                    Our collaboration reflects the same principle the book describes: that reality unfolds through delicate equilibrium, through the meeting of perspectives that refine one another until coherence is achieved.
-                </p>
-            </div>
+
+            <p class="max-w-3xl mx-auto mt-12 pt-6 border-t border-gray-200 text-gray-600 font-medium text-justify text-lg md:text-xl leading-relaxed">
+  <i>Their collaboration reflects the same principle the book describes: that reality unfolds through delicate equilibrium, through the meeting of perspectives that refine one another until coherence is achieved.</i>
+</p>
         </div>
     </section>
 
-    <!-- === 6. FINAL INVITATION & CTA / DIALOGUE (Reworked) === -->
-    <section id="contact" class="section-transparent-white py-20 md:py-28 text-center">
-        <!-- New, simplified heading -->
-        <h3 class="text-3xl sm:text-4xl font-bold mb-6 tracking-tight">
-            Share Your Insights
-        </h3>
-        <p class="text-xl max-w-2xl mx-auto mb-10 text-gray-600">
-            The Framework is an ongoing inquiry. Share your reflections, applications, or questions by joining the community dialogue.
+    <!-- === 6. FINAL INVITATION / CTA === -->
+    <section class="section-transparent-white py-20 md:py-24 text-center border-t border-gray-200">
+        <h3 class="text-3xl font-bold mb-6 font-heading">Ready to Begin Your Exploration?</h3>
+        <p class="text-lg text-gray-700 mb-8">
+            Acquire the foundational insights to understand the architecture of reality.
         </p>
-        <!-- CTA 3: Join Discussion (still rounded-full for visual contrast) -->
-        <a href="https://chat.whatsapp.com/LekTStYvWhT7Dwfpbo0MPv" target="_blank"
-            class="inline-flex items-center justify-center bg-[var(--color-primary)] text-white py-4 px-10 text-xl font-bold rounded-full shadow-xl hover:bg-indigo-800 transition duration-300 transform hover:translate-y-[-2px]">
-            <!-- Clean Chat Bubble SVG Icon -->
-            <svg class="w-6 h-6 mr-3" fill="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                <!-- Simple speech bubble path -->
-                <path d="M20 2H4C2.9 2 2 2.9 2 4v16l4-4h14c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2z"/>
-            </svg>
-            Join Discussion
-        </a>
-        <!-- Updated text and mailto link -->
-        <p class="mt-8 text-sm text-gray-500">
-            For more inquiries, please contact: <a href="mailto:mail@sanjeevkhanal.com.np" class="underline hover:text-primary-custom">mail@sanjeevkhanal.com.np</a>
-        </p>
+        
+        <!-- Final CTA: Calls openModal() on click -->
+        <button id="openModalFooter"
+            class="bg-[var(--color-primary)] text-white py-4 px-12 text-xl font-bold rounded-lg 
+                   shadow-2xl hover:bg-indigo-900 transition duration-300 transform 
+                   hover:scale-[1.05]">
+            Start Your Journey Now
+        </button>
     </section>
+
 
     <!-- === 7. FOOTER === -->
     <footer class="footer-transparent-dark text-gray-300 py-10">
@@ -364,291 +392,159 @@
             <!-- ISBN Added Here -->
             <p class="mb-2 sm:mb-0">ISBN: 9789937192835 | &copy; 2025 Sanjeev Khanal and Raheel Budha.</p>
             <div class="flex space-x-4 mt-4 sm:mt-0">
-                <a href="#hero" class="hover:text-white transition duration-150">Exploration</a>
-                <a href="#domains" class="hover:text-white transition duration-150">Domains</a>
-                <a href="#authors" class="hover:text-white transition duration-150">Authors</a>
+                <a href="return_policy.html" class="hover:text-white transition duration-150">Return Policy</a>
+                <a href="#hero" class="hover:text-white transition duration-150">Back to Top</a>
             </div>
         </div>
     </footer>
 
-    <!-- === ORDER CONFIRMATION MODAL (Multi-Step Flow) === -->
-    <!-- The structure now hosts two steps dynamically -->
-    <div id="order-modal" class="fixed inset-0 z-[100] hidden items-center justify-center modal-overlay" onclick="closeModal()">
-        
-        <!-- Modal Content Container -->
-        <div id="modal-content" class="bg-white rounded-xl shadow-2xl max-w-lg w-full p-6 m-4 transform transition-all duration-300 ease-out scale-100" onclick="event.stopPropagation()">
-            <!-- Dynamic content for Step 1 or Step 2 injected here by JS -->
-        </div>
-    </div>
+    
+    <!-- === 8. WHATSAPP ORDER MODAL (Hidden by default) === -->
+    <div id="orderModal" class="modal hidden">
+        <div class="modal-content">
+            <div class="flex justify-between items-center border-b pb-3 mb-4">
+                <h4 class="text-2xl font-bold font-heading text-primary-custom">Place Your Order</h4>
+                <button id="closeModal" class="text-gray-500 hover:text-gray-900 text-3xl font-light">&times;</button>
+            </div>
+            
+            <p class="text-lg font-semibold text-gray-800 mb-4">Price: NPR 1500</p>
 
-    <!-- Custom Dialog/Message Box for success/error messages (replaces alert()) -->
-    <div id="messageBox" class="fixed top-4 right-4 z-[101] hidden p-4 rounded-lg shadow-xl text-white font-semibold transform transition-all duration-300 translate-x-full" role="alert">
-        <span id="messageText"></span>
+            <form id="orderForm" class="space-y-4">
+                <div>
+                    <input type="text" id="customerName" placeholder="Full Name (Required)" required class="w-full p-3 border border-gray-300 rounded-lg focus:ring-accent focus:border-accent">
+                </div>
+                <div>
+                    <input type="tel" id="customerPhone" placeholder="Phone Number (Required for COD)" required class="w-full p-3 border border-gray-300 rounded-lg focus:ring-accent focus:border-accent">
+                </div>
+                <div>
+                    <input type="email" id="customerEmail" placeholder="Email (Optional)" class="w-full p-3 border border-gray-300 rounded-lg focus:ring-accent focus:border-accent">
+                </div>
+                <div>
+                    <textarea id="customerAddress" placeholder="Full Shipping Address (Required)" rows="3" required class="w-full p-3 border border-gray-300 rounded-lg focus:ring-accent focus:border-accent"></textarea>
+		    <p> Payment Mode: Cash on Delivery </p>
+                </div>
+                
+                <button type="submit"
+                    class="w-full bg-green-500 text-white py-3 font-bold rounded-lg 
+                           hover:bg-green-600 transition duration-300">
+                    Place Order via WhatsApp
+                </button>
+            </form>
+            
+            <p id="whatsappError" class="text-red-600 text-center mt-3 hidden text-sm">Please fill in all required fields.</p>
+            <p class="text-xs text-gray-500 mt-4 text-center">
+                Your order details will be sent to our team via a pre-filled WhatsApp message.
+            </p>
+        </div>
     </div>
 
 
     <!-- === JAVASCRIPT: FUNCTIONALITY & CANVAS ANIMATION === -->
     <script>
-        // --- 1. GLOBAL CONSTANTS & ELEMENTS ---
-        const BOOK_TITLE = "The Awareness Framework (Paperback)";
-        // PRICE UPDATE: Changed to NPR 1500
-        const BOOK_PRICE = 1500; 
-        const CURRENCY_SYMBOL = "NPR "; // Added currency symbol constant
-        // WHATSAPP NUMBER: +977-9705005200 (using digits only for wa.me link)
-        const WA_RECIPIENT_NUMBER = "9779864278144"; 
-
-        const modal = document.getElementById('order-modal');
-        const modalContent = document.getElementById('modal-content');
-        const messageArea = document.getElementById('order-message-area'); // For messages on the main page
-        const messageBox = document.getElementById('messageBox'); // For success/error toasts
-        const messageText = document.getElementById('messageText');
-
-        // Global State for multi-step flow
-        let orderDetails = {
-            name: '',
-            phoneCode: '+977', // Default to Nepal
-            phoneNumber: '',
-            country: 'Nepal',
-            state: '',
-            address: '',
-            copies: 1,
-        };
-        let currentStep = 0; // 0: Closed, 1: Details Entry, 2: Confirmation
         
-        // --- 2. UTILITY FUNCTIONS ---
-        
-        /** Shows a temporary success or error message (replaces alert()) */
-        function showToast(message, type = 'error') {
-            messageText.textContent = message;
-            if (type === 'success') {
-                messageBox.className = 'fixed top-4 right-4 z-[101] p-4 rounded-lg shadow-xl text-white bg-green-500 font-semibold transform transition-all duration-300 translate-x-0';
-            } else {
-                messageBox.className = 'fixed top-4 right-4 z-[101] p-4 rounded-lg shadow-xl text-white bg-red-500 font-semibold transform transition-all duration-300 translate-x-0';
-            }
-            messageBox.style.display = 'block';
-            
-            // Hide after 3 seconds
-            setTimeout(() => {
-                messageBox.className = 'fixed top-4 right-4 z-[101] p-4 rounded-lg shadow-xl text-white font-semibold transform transition-all duration-300 translate-x-full';
-            }, 3000);
-            // Hide element fully after transition
-            setTimeout(() => {
-                messageBox.style.display = 'none';
-            }, 3500);
+        // --- 1. UTILITY FUNCTIONS ---
+        // Handles image loading failure by showing the styled placeholder text
+        function handleImageError(imageElement, placeholderTextId) {
+            imageElement.style.display = 'none';
+            document.getElementById(placeholderTextId).style.display = 'flex';
         }
 
-        /** Closes the modal and resets the step */
+        // --- 2. MOBILE MENU & MODAL TOGGLE LOGIC ---
+        const mobileMenuButton = document.getElementById('mobile-menu-button');
+        const mobileNav = document.getElementById('mobile-nav');
+        const modal = document.getElementById('orderModal');
+        const closeModalButton = document.getElementById('closeModal');
+        
+        // Modal opener buttons
+        const openModalButtons = document.querySelectorAll('#openModalDesktop, #openModalMobile, #openModalHero, #openModalFooter');
+        
+        function openModal() {
+            modal.classList.remove('hidden');
+        }
+        
         function closeModal() {
             modal.classList.add('hidden');
-            modal.classList.remove('flex');
-            currentStep = 0;
         }
 
-        /** Displays the modal and renders content for the specified step */
-        function showModal(step) {
-            currentStep = step;
-            modal.classList.remove('hidden');
-            modal.classList.add('flex');
-            
-            if (step === 1) {
-                renderStep1();
-            } else if (step === 2) {
-                renderStep2();
+        openModalButtons.forEach(button => {
+            button.addEventListener('click', openModal);
+        });
+
+        closeModalButton.addEventListener('click', closeModal);
+
+        // Close modal when clicking outside
+        modal.addEventListener('click', (e) => {
+            if (e.target === modal) {
+                closeModal();
             }
-            
-            // Clear main page message area when modal opens
-            messageArea.innerHTML = '';
-        }
+        });
 
 
-        // --- 3. STEP 1: DETAILS ENTRY ---
+        if (mobileMenuButton && mobileNav) {
+            mobileMenuButton.addEventListener('click', () => {
+                mobileNav.classList.toggle('hidden');
+            });
 
-        function renderStep1() {
-            modalContent.innerHTML = `
-                <div class="p-4 sm:p-8">
-                    <h2 class="text-2xl font-bold text-primary-custom mb-2 border-b pb-2">1. Shipping Details</h2>
-                    <p class="text-sm text-gray-500 mb-6">Enter your address and contact information for the order.</p>
-                    
-                    <form id="detailsForm" onsubmit="event.preventDefault(); proceedToConfirm();">
-                        <!-- Name -->
-                        <div class="mb-4">
-                            <label for="name" class="block text-sm font-medium text-gray-700 mb-1">Full Name</label>
-                            <input type="text" id="name" value="${orderDetails.name}" required
-                                class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-accent focus:border-accent transition duration-150" placeholder="Ram Bahadur Magar">
-                        </div>
-
-                        <!-- Phone Number -->
-                        <div class="mb-4">
-                            <label for="phoneNumber" class="block text-sm font-medium text-gray-700 mb-1">Phone Number (Required for WA Order)</label>
-                            <div class="flex gap-2">
-                                <select id="phoneCode" class="px-3 py-2 border border-gray-300 rounded-lg focus:ring-accent focus:border-accent">
-                                    <option value="+977" ${orderDetails.phoneCode === '+977' ? 'selected' : ''}>+977 (NP)</option>
-                                    <option value="+91" ${orderDetails.phoneCode === '+91' ? 'selected' : ''}>+91 (IN)</option>
-                                    <option value="+1" ${orderDetails.phoneCode === '+1' ? 'selected' : ''}>+1 (US/CA)</option>
-                                    <option value="+44" ${orderDetails.phoneCode === '+44' ? 'selected' : ''}>+44 (UK)</option>
-                                </select>
-                                <input type="tel" id="phoneNumber" value="${orderDetails.phoneNumber}" required
-                                    class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-accent focus:border-accent transition duration-150" placeholder="9876543210">
-                            </div>
-                        </div>
-
-                        <!-- Country and State -->
-                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-4">
-                            <div>
-                                <label for="country" class="block text-sm font-medium text-gray-700 mb-1">Country</label>
-                                <select id="country" class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-accent focus:border-accent">
-                                    <option value="Nepal" ${orderDetails.country === 'Nepal' ? 'selected' : ''}>Nepal</option>
-                                    <option value="India" ${orderDetails.country === 'India' ? 'selected' : ''}>India</option>
-                                    <option value="Other" ${orderDetails.country === 'Other' ? 'selected' : ''}>Other</option>
-                                </select>
-                            </div>
-                            <div>
-                                <label for="state" class="block text-sm font-medium text-gray-700 mb-1">State/Province</label>
-                                <input type="text" id="state" value="${orderDetails.state}" required
-                                    class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-accent focus:border-accent transition duration-150" placeholder="e.g., Bagmati, Kathmandu">
-                            </div>
-                        </div>
-
-                        <!-- Shipping Address -->
-                        <div class="mb-6">
-                            <label for="address" class="block text-sm font-medium text-gray-700 mb-1">Full Shipping Address</label>
-                            <textarea id="address" rows="3" required
-                                class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-accent focus:border-accent transition duration-150" 
-                                placeholder="Street Address, City, Zip Code / Area">${orderDetails.address}</textarea>
-                        </div>
-                        
-                        <!-- Buttons -->
-                        <div class="flex justify-end gap-3">
-                            <button type="button" onclick="closeModal()" class="px-4 py-2 text-gray-600 border border-gray-300 rounded-lg hover:bg-gray-100 transition duration-150">
-                                Cancel
-                            </button>
-                            <button type="submit" class="px-6 py-2 bg-[var(--color-primary)] text-white font-semibold rounded-lg shadow-md hover:bg-indigo-700 transition duration-150">
-                                Proceed to Confirm &rarr;
-                            </button>
-                        </div>
-                    </form>
-                </div>
-            `;
-        }
-
-        /** Collects data from Step 1 form, validates it, and moves to Step 2 */
-        function proceedToConfirm() {
-            const name = document.getElementById('name').value.trim();
-            const phoneCode = document.getElementById('phoneCode').value.trim();
-            const phoneNumber = document.getElementById('phoneNumber').value.trim();
-            const country = document.getElementById('country').value.trim();
-            const state = document.getElementById('state').value.trim();
-            const address = document.getElementById('address').value.trim();
-
-            // Simple validation
-            if (!name || !phoneNumber || !country || !state || !address) {
-                showToast("Please fill out all necessary details", 'error');
-                return;
-            }
-            
-            // Basic phone number length validation (adjust as needed for specific markets)
-            if (phoneNumber.length < 7 || phoneNumber.length > 15) {
-                showToast("Please check the phone number length.", 'error');
-                return;
-            }
-
-            // Update global state, retaining the last selected copies count
-            orderDetails = { name, phoneCode, phoneNumber, country, state, address, copies: orderDetails.copies };
-            
-            // Move to step 2
-            showModal(2);
+            mobileNav.querySelectorAll('a').forEach(link => {
+                link.addEventListener('click', () => {
+                    mobileNav.classList.add('hidden');
+                });
+            });
         }
         
-        // --- 4. STEP 2: CONFIRMATION & QUANTITY ---
-
-        function renderStep2() {
-            const { name, phoneCode, phoneNumber, country, state, address, copies } = orderDetails;
-            
-            modalContent.innerHTML = `
-                <div class="p-4 sm:p-8">
-                    <h2 class="text-2xl font-bold text-primary-custom mb-2 border-b pb-2">2. Confirm Order and Quantity</h2>
-                    <p class="text-sm text-gray-500 mb-6">Review your details and select the number of copies</p>
-                    
-                    <!-- Confirmation Details Box -->
-                    <div class="bg-gray-50 p-4 rounded-lg mb-6 confirmation-scroll border border-gray-200">
-                        <h3 class="font-semibold text-lg text-gray-700 mb-3">Shipping Information Summary:</h3>
-                        <div class="space-y-2 text-sm text-gray-600">
-                            <p><strong>Recipient:</strong> ${name}</p>
-                            <p><strong>Phone:</strong> <span class="text-green-600 font-medium">${phoneCode}${phoneNumber}</span> (For WhatsApp)</p>
-                            <p><strong>Location:</strong> ${address}, ${state}, ${country}</p>
-                        </div>
-
-                        <h3 class="font-semibold text-lg text-gray-700 mt-4 mb-3">Product:</h3>
-                        <p class="text-sm text-gray-600"><strong>${BOOK_TITLE}</strong></p>
-                        <!-- Price updated to use new constant and currency symbol -->
-                        <p class="text-sm text-gray-600">Price: ${CURRENCY_SYMBOL}${BOOK_PRICE.toLocaleString()} </p>
-                    </div>
-
-                    <!-- Number of Copies Selector -->
-                    <div class="mb-6 flex items-center justify-between p-3 bg-white border border-[var(--color-primary)] rounded-lg shadow-sm">
-                        <label for="copies" class="block text-base font-semibold text-gray-700">Number of Copies:</label>
-                        <select id="copies" onchange="orderDetails.copies = parseInt(this.value);" 
-                            class="px-4 py-2 border border-gray-300 rounded-lg focus:ring-accent focus:border-accent text-lg font-bold">
-                            <!-- Generate options for 1 to 10 copies -->
-                            ${[...Array(10).keys()].map(i => i + 1).map(num => 
-                                `<option value="${num}" ${copies === num ? 'selected' : ''}>${num}</option>`
-                            ).join('')}
-                        </select>
-                    </div>
-
-                    <!-- Buttons -->
-                    <div class="flex justify-between gap-3">
-                        <button type="button" onclick="showModal(1)" class="px-4 py-2 text-gray-600 bg-gray-100 rounded-lg hover:bg-gray-200 transition duration-150">
-                            &larr; Edit Details
-                        </button>
-                        <button type="button" onclick="placeOrderViaWhatsapp()" 
-                                class="flex items-center gap-2 px-6 py-3 bg-green-500 text-white font-bold rounded-lg shadow-lg hover:bg-green-600 transition duration-150 transform hover:scale-[1.01]">
-                            <!-- WhatsApp Icon (inline SVG) -->
-                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="currentColor"><path d="M12.04 2c-5.46 0-9.91 4.45-9.91 9.91 0 1.75.46 3.45 1.34 4.97l-1.4 5.15 5.23-1.37c1.45.79 3.08 1.21 4.74 1.21 5.46 0 9.91-4.45 9.91-9.91s-4.45-9.91-9.91-9.91zm.04 18.02c-1.42 0-2.8-.39-3.99-1.14l-.28-.17-2.92.77.78-2.85-.19-.3c-.83-1.35-1.27-2.92-1.27-4.52 0-4.63 3.77-8.4 8.4-8.4s8.4 3.77 8.4 8.4-3.77 8.4-8.4 8.4zm4.1-6.19c-.23-.12-.87-.44-.99-.48s-.25-.06-.35.06-.4.48-.49.58-.17.11-.31.06c-.14-.06-.59-.22-1.12-.69-.41-.36-.69-.8-1.01-1.34-.31-.54-.03-.5-.07-.54s-.35-.04-.48-.04-.25-.01-.35.05c-.1.06-.17.18-.26.28-.08.1-.17.19-.25.28-.08.1-.17.07-.31 0s-.6-.22-1.14-.68c-.54-.45-.9-.87-1.27-1.44-.37-.56-.1-.58-.28-.58h-.06c-.18 0-.48.06-.63.22-.15.15-.58.55-.58 1.33s.6 1.54.68 1.65.25.12.44.33c.19.2.39.48.59.69.2.2.39.33.56.44.86.58 1.75.87 2.65.87 2.11 0 4.01-1.57 4.74-2.83.23-.39.23-.74.16-.87-.06-.13-.23-.2-.48-.33z"/></svg>
-                            Place Order via WhatsApp
-                        </button>
-                    </div>
-                </div>
-            `;
-        }
+        // --- 3. WHATSAPP ORDER FUNCTIONALITY ---
+        // Configuration Variables (UPDATED)
+        const whatsappNumber = '9779864278144'; // The actual phone number
+        const bookPrice = 1500; // Updated price in NPR
         
-        /** Generates the pre-filled WhatsApp message URL and opens it */
-        function placeOrderViaWhatsapp() {
-            const { name, phoneCode, phoneNumber, country, state, address, copies } = orderDetails;
-            
-            // 1. Construct the message content
-            const messageTemplate = `
-*NEW BOOK ORDER*
+        const orderForm = document.getElementById('orderForm');
+        const whatsappError = document.getElementById('whatsappError');
 
-*Name:* The Awareness Framework
-*Quantity:* ${copies} Copies
-*Amount:* ${CURRENCY_SYMBOL}${(copies * BOOK_PRICE).toLocaleString()}
-*Customer:* ${name}
-*Phone:* ${phoneCode}${phoneNumber}
-*Address:* ${address}, ${state}, ${country}
+        orderForm.addEventListener('submit', function(e) {
+            e.preventDefault();
 
-            `.trim();
+            const name = document.getElementById('customerName').value.trim();
+            const phone = document.getElementById('customerPhone').value.trim();
+            const email = document.getElementById('customerEmail').value.trim();
+            const address = document.getElementById('customerAddress').value.trim();
             
-            // 2. Encode the message for the URL
-            const encodedMessage = encodeURIComponent(messageTemplate);
-            
-            // 3. Construct the WhatsApp API URL
-            const whatsappUrl = `https://wa.me/${WA_RECIPIENT_NUMBER}?text=${encodedMessage}`;
-            
-            // 4. Provide feedback and close the modal
+            if (!name || !phone || !address) {
+                whatsappError.classList.remove('hidden');
+                return;
+            } else {
+                whatsappError.classList.add('hidden');
+            }
+
+            // Construct the message
+            const message = encodeURIComponent(
+                `*NEW ORDER: THE AWARENESS FRAMEWORK*\n` +
+                `-------------------------------------------------------\n` +
+                `*Name:* ${name}\n` +
+                `*Phone:* ${phone}\n` +
+                `*Email:* ${email || 'N/A'}\n` +
+                `*Address:* ${address}\n` +
+                `\n` +
+                `*Order:* 1 pcs\n` +
+                `*Price:* NPR ${bookPrice.toLocaleString('en-US')}\n`
+            );
+
+            // Construct the WhatsApp URL
+            const whatsappUrl = `https://wa.me/${whatsappNumber}?text=${message}`;
+
+            // Close modal and redirect
             closeModal();
-            showToast(`Opening WhatsApp chat. Please confirm the pre-filled message.`, 'success');
-            
-            // 5. Open the WhatsApp link
             window.open(whatsappUrl, '_blank');
-        }
+        });
 
-        
-        // --- 5. CANVAS ANIMATION LOGIC (Retained from original file) ---
+
+        // --- 4. AWARENESS WAVE CANVAS ANIMATION (Perpetual Field) ---
         const canvas = document.getElementById('awarenessCanvas');
         
-        if (canvas) {
+        if (!canvas) {
+            console.error("Canvas element not found.");
+        } else {
             const ctx = canvas.getContext('2d');
+            
             let rings = [];
             
             const MAX_RINGS = 30; 
@@ -662,6 +558,7 @@
                 canvas.width = window.innerWidth;
                 canvas.height = window.innerHeight;
             }
+
             resizeCanvas();
             window.addEventListener('resize', resizeCanvas); 
 
@@ -717,7 +614,6 @@
 
             let frameCount = 0;
             function animate() {
-                // Clear canvas with a slight transparency for the trail effect
                 ctx.fillStyle = 'rgba(255, 255, 255, 0.2)'; 
                 ctx.fillRect(0, 0, canvas.width, canvas.height); 
 
@@ -744,32 +640,6 @@
             initializePerpetualField();
             animate();
         }
-        
-        // --- 6. INITIALIZATION AND EVENT LISTENERS ---
-        
-        // Listen for mobile menu toggle
-        const mobileMenuButton = document.getElementById('mobile-menu-button');
-        const mobileNav = document.getElementById('mobile-nav');
-        
-        if (mobileMenuButton && mobileNav) {
-            mobileMenuButton.addEventListener('click', () => {
-                mobileNav.classList.toggle('hidden');
-            });
-            // Close menu when a link is clicked
-            mobileNav.querySelectorAll('a').forEach(link => {
-                link.addEventListener('click', () => {
-                    mobileNav.classList.add('hidden');
-                });
-            });
-        }
-        
-        // Event listener to close modal when clicking outside (on the overlay)
-        modal.addEventListener('click', (e) => {
-            if (e.target === modal) {
-                closeModal();
-            }
-        });
-
     </script>
 </body>
 </html>
