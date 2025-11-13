@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Scripts & Computational Guide</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+    
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f7f7f7;
+        }
+        .playfair {
+            font-family: 'Playfair Display', serif;
+        }
+        .code-block {
+            background-color: #2d3748; /* Dark blue/gray */
+            color: #f7fafc; /* Light text */
+            padding: 1rem;
+            border-radius: 0.5rem;
+            overflow-x: auto;
+            font-family: monospace;
+            line-height: 1.4;
+        }
+    </style>
+</head>
+<body>
+    <div class="min-h-screen flex flex-col items-center">
+        <header class="w-full max-w-7xl px-4 py-6 flex justify-between items-center bg-white shadow-sm">
+            <h1 class="text-xl playfair font-bold text-gray-800">The Awareness Framework</h1>
+            <nav>
+                <a href="index.html#book" class="text-gray-600 hover:text-gray-900 mx-3 transition duration-150">The Book</a>
+                <a href="index.html#framework" class="text-gray-600 hover:text-gray-900 mx-3 transition duration-150">Framework</a>
+                <a href="#" class="text-indigo-600 hover:text-indigo-800 mx-3 transition duration-150 font-semibold border-b-2 border-indigo-600">Scripts & Code</a>
+                <a href="index.html#contact" class="text-gray-600 hover:text-gray-900 mx-3 transition duration-150">Contact</a>
+            </nav>
+        </header>
+
+        <main class="w-full max-w-5xl px-6 py-12 flex-grow">
+            <section class="text-center mb-16">
+                <h2 class="text-5xl playfair font-bold text-gray-900 mb-4">Computational Implementation</h2>
+                <p class="text-xl text-gray-600 max-w-3xl mx-auto">
+                    Download the Python scripts implementing the five layers (L1-L5) of The Awareness Framework, formalizing R = O.M.P into a falsifiable model.
+                </p>
+            </section>
+
+            <section class="mb-16">
+                <h3 class="text-3xl playfair font-semibold text-gray-800 border-b-2 border-indigo-300 pb-2 mb-8">1. Download All Files</h3>
+                
+                <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+                    <a href="framework_utils.py" class="block p-4 bg-white rounded-lg shadow-md hover:shadow-xl transition duration-300 hover:bg-indigo-50 border-l-4 border-indigo-600" download>
+                        <p class="font-mono text-lg font-bold text-gray-900">framework_utils.py</p>
+                        <p class="text-sm text-gray-500">Core ODEs and Utilities</p>
+                    </a>
+                    <a href="run_full_pipeline.py" class="block p-4 bg-white rounded-lg shadow-md hover:shadow-xl transition duration-300 hover:bg-indigo-50 border-l-4 border-indigo-600" download>
+                        <p class="font-mono text-lg font-bold text-gray-900">run_full_pipeline.py</p>
+                        <p class="text-sm text-gray-500 font-bold text-indigo-700">The main script to run L1-L5</p>
+                    </a>
+                    <a href="sim_core_dynamics.py" class="block p-4 bg-white rounded-lg shadow-md hover:shadow-xl transition duration-300 hover:bg-indigo-50 border-l-4 border-indigo-600" download>
+                        <p class="font-mono text-lg font-bold text-gray-900">sim_core_dynamics.py</p>
+                        <p class="text-sm text-gray-500">L1: Awareness time-series</p>
+                    </a>
+                    <a href="sim_energy_balance.py" class="block p-4 bg-white rounded-lg shadow-md hover:shadow-xl transition duration-300 hover:bg-indigo-50 border-l-4 border-indigo-600" download>
+                        <p class="font-mono text-lg font-bold text-gray-900">sim_energy_balance.py</p>
+                        <p class="text-sm text-gray-500">L2: Energy and Entropy</p>
+                    </a>
+                    <a href="sim_spatial_field.py" class="block p-4 bg-white rounded-lg shadow-md hover:shadow-xl transition duration-300 hover:bg-indigo-50 border-l-4 border-indigo-600" download>
+                        <p class="font-mono text-lg font-bold text-gray-900">sim_spatial_field.py</p>
+                        <p class="text-sm text-gray-500">L3: Spatial diffusion/coupling</p>
+                    </a>
+                    <a href="sim_temporal_hierarchy.py" class="block p-4 bg-white rounded-lg shadow-md hover:shadow-xl transition duration-300 hover:bg-indigo-50 border-l-4 border-indigo-600" download>
+                        <p class="font-mono text-lg font-bold text-gray-900">sim_temporal_hierarchy.py</p>
+                        <p class="text-sm text-gray-500">L4: Temporal frequency analysis</p>
+                    </a>
+                     <a href="sim_integrated_system.py" class="block p-4 bg-white rounded-lg shadow-md hover:shadow-xl transition duration-300 hover:bg-indigo-50 border-l-4 border-indigo-600" download>
+                        <p class="font-mono text-lg font-bold text-gray-900">sim_integrated_system.py</p>
+                        <p class="text-sm text-gray-500">L5: Integrated Efficiency/Plotting</p>
+                    </a>
+                </div>
+                <p class="text-sm text-center text-gray-500 mt-8">
+                    <strong>Action:</strong> Click the link to download. <br>
+                </p>
+            </section>
+            
+            <section class="mb-16">
+                <h3 class="text-3xl playfair font-semibold text-gray-800 border-b-2 border-indigo-300 pb-2 mb-8">2. How to Run the Full Pipeline</h3>
+                
+                <ol class="list-decimal list-inside space-y-6 text-lg text-gray-700">
+                    <li>
+                        <strong class="text-indigo-600">Prerequisites:</strong> Ensure you have Python installed (version 3.6+). The scripts rely on common scientific libraries.
+                    </li>
+                    <li>
+                        <strong class="text-indigo-600">Install Dependencies:</strong> Open your terminal or command prompt, navigate to the directory where you saved the files, and install the required packages.
+                        <div class="code-block mt-2">
+                            <code>pip install numpy pandas scipy matplotlib seaborn tqdm</code>
+                        </div>
+                    </li>
+                    <li>
+                        <strong class="text-indigo-600">Download and Place Files:</strong> Download all 7 Python files listed above and place them into a single folder.
+                    </li>
+                    <li>
+                        <strong class="text-indigo-600">Execute the Pipeline:</strong> The `run_full_pipeline.py` script orchestrates the execution of all five layers (L1 through L5) in the correct order.
+                        <div class="code-block mt-2">
+                            <code>python run_full_pipeline.py</code>
+                        </div>
+                        <p class="text-sm text-gray-400 mt-1">
+                            This will automatically generate intermediate CSV and NPY files for each layer and create the final plots in a new folder named `romp_final_plots`.
+                        </p>
+                    </li>
+                    <li>
+                        <strong class="text-indigo-600">View Results:</strong> After the script completes, check the `romp_final_plots` directory for the resulting figures that illustrate the core dynamics, energy balance, spatial evolution, and efficiency metrics.
+                    </li>
+                </ol>
+            </section>
+        </main>
+
+        <footer class="w-full max-w-7xl px-4 py-6 text-center text-gray-500 border-t mt-auto">
+            <p>&copy; 2025 The Awareness Framework. All rights reserved.</p>
+        </footer>
+    </div>
+</body>
+</html>
